@@ -3,7 +3,7 @@
 @section('title', 'Unidades De Medidas')
 
 @section('content_header')
-    <h1> Unidades De Medidas</h1>
+    <h1> Unidades De Medidas .</h1>
 @stop
 
 
