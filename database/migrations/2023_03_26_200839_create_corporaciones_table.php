@@ -13,17 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('corporacion', function (Blueprint $table) {
+        Schema::create('corporaciones', function (Blueprint $table) {
             $table->id();
             $table -> string('nombre');
             $table -> string('rif');
             $table -> string('imagen');
             $table -> string('telefono');
-            $table -> string('gabinte_id');
-            $table -> string('dirrecion_id');
+            
+            
             $table -> string('responsable');
 
             $table -> string('correo');
+            $table->bigInteger('gabinete_id')->unsigned();
+            $table->bigInteger('direcion_id')->unsigned();
+
+            $table->foreign('gabinete_id')->references('id')->on('gabinetes')->onDelete('cascade');
+            $table->foreign('direcion_id')->references('id')->on('direcciones')->onDelete('cascade');
 
 
 
@@ -41,6 +46,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('corporacion');
+        Schema::dropIfExists('corporaciones');
     }
 };

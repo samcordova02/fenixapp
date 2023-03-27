@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('Create') }} Gabinete
+    {{ __('Create') }} Actividade
 @endsection
 
 @section('content')
@@ -13,13 +13,13 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Gabinete</span>
+                        <span class="card-title">{{ __('Create') }} Actividade</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('gabinetes.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('actividades.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('gabinete.form')
+                            @include('actividade.form')
 
                         </form>
                     </div>

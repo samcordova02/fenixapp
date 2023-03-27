@@ -13,14 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('responsable', function (Blueprint $table) {
+        Schema::create('responsables', function (Blueprint $table) {
             $table->id();
             $table -> string('nombre');
             $table -> string('telefono');
             $table -> string('correo');
             $table -> string('cargo');
             $table -> string('imagen');
-            $table -> string('corporacion_id');
+            
+            $table->bigInteger('corporacion_id')-> unsigned ();
+            $table->foreign('corporacion_id')->references('id')->on('corporaciones')->onDelete('cascade');
+    
+
             $table->timestamps();
         });
     }
@@ -32,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('responsable');
+        Schema::dropIfExists('responsables');
     }
 };
