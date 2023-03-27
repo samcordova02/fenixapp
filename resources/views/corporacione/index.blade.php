@@ -1,10 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Registro de Estados ')
+@section('title', 'Registro de Corporaciones ')
 
 @section('content_header')
-    <h1> Registro de Estados </h1>
+    <h1> Registro de Corporaciones</h1>
 @stop
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -14,11 +15,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Estados') }}
+                                {{ __('Corporaciones') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('estados.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('corporaciones.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear Nuevo') }}
                                 </a>
                               </div>
@@ -38,21 +39,35 @@
                                         <th>No</th>
                                         
 										<th>Nombre</th>
+										<th>Rif</th>
+										<th>Imagen De la Coporacion</th>
+										<th>Telefono</th>
+										<th>Gabinete </th>
+										<th>Direcion </th>
+										<th>Responsable</th>
+										<th>Correo</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($estados as $estado)
+                                    @foreach ($corporaciones as $corporacione)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $estado->nombre }}</td>
+											<td>{{ $corporacione->nombre }}</td>
+											<td>{{ $corporacione->rif }}</td>
+											<td>{{ $corporacione->imagen }}</td>
+											<td>{{ $corporacione->telefono }}</td>
+											<td>{{ $corporacione->gabinete_id }}</td>
+											<td>{{ $corporacione->direcion_id }}</td>
+											<td>{{ $corporacione->responsable }}</td>
+											<td>{{ $corporacione->correo }}</td>
 
                                             <td>
-                                                <form action="{{ route('estados.destroy',$estado->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('estados.show',$estado->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('estados.edit',$estado->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                <form action="{{ route('corporaciones.destroy',$corporacione->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('corporaciones.show',$corporacione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver ') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('corporaciones.edit',$corporacione->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Borrar') }}</button>
@@ -65,7 +80,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $estados->links() !!}
+                {!! $corporaciones->links() !!}
             </div>
         </div>
     </div>
@@ -83,3 +98,4 @@
     
     
     @stop
+    

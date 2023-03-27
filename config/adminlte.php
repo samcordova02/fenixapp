@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'FENIX V.1.0.1',
+    'title' => 'FENIX ',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Fenix</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo1.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => false,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/AdminLTELogo1.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -130,8 +130,8 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-dark',
+    'usermenu_header' => true,
+    'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
     'usermenu_profile_url' => false,
@@ -192,9 +192,9 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-lihgt-primary elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_topnav' => 'navbar-blue navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -304,25 +304,23 @@ return [
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
-            'text' => 'search',
+            'text' => 'Buscar',
         ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-
-
-        
-        ['header' => 'GESTIONES DE PROYECTOS'],
        
+            
+        ['header' => 'GESTION DE PROYECTOS',
+
+    
+        ],
+    
+
+       
+        [
+            'text' => 'Datos Estadisticos',
+            'url'  => 'admin/settings',
+            'icon' => 'far fa-fw fa-file',
+        ],
+
         [
             'text' => 'Proyectos',
             'url'  => 'admin/settings',
@@ -333,21 +331,21 @@ return [
 
         [
             'text' => 'Corporaciones',
-            'url'  => 'admin/settings',
+            'route'  => 'corporaciones.index',
             'icon' => 'fas fa-fw fa-sitemap',
         ],
 
 
         [
             'text' => 'Gabinete',
-            'url'  => 'admin/settings',
+            'route'  => 'gabinetes.index',
             'icon' => 'fas fa-fw fa-layer-group',
         ],
 
 
         [
             'text' => 'Estados',
-            'url'  => 'admin/settings',
+            'route'  => 'estados.index',
             'icon' => 'fas fa-fw fa-landmark',
         ],
    [
@@ -376,7 +374,16 @@ return [
             'icon' => 'fas fa-fw fa-people-carry',
          
         ],
-        
+        [
+            'text' => 'Responsable',
+            'route'  => 'responsables.index',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+
+
+
+
+
      
 
     ],
@@ -462,7 +469,7 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

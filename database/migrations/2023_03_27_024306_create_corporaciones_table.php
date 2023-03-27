@@ -13,10 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('estados', function (Blueprint $table) {
+        Schema::create('corporaciones', function (Blueprint $table) {
             $table->id();
             $table -> string('nombre');
-      
+            $table -> string('rif');
+            $table -> string('imagen');
+            $table -> string('telefono');
+            $table -> string('gabinete_id');
+            $table -> string('direcion_id');
+            $table -> string('responsable');
+
+            $table -> string('correo');
             $table->timestamps();
         });
     }
@@ -28,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estados');
+        Schema::dropIfExists('corporaciones');
     }
 };

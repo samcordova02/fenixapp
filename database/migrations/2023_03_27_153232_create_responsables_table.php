@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gabinete', function (Blueprint $table) {
+        Schema::create('responsables', function (Blueprint $table) {
             $table->id();
             $table -> string('nombre');
-            $table -> string('responsable');
-            $table -> string('imagen');
             $table -> string('telefono');
             $table -> string('correo');
-                       $table->timestamps();
+            $table -> string('cargo');
+            $table -> string('imagen');
+            $table -> string('corporacion_id');
+            $table->timestamps();
         });
     }
 
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gabinete');
+        Schema::dropIfExists('responsables');
     }
 };

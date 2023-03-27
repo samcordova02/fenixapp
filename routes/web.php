@@ -28,4 +28,8 @@ Route::resource('unidadmedidas', App\Http\Controllers\UnidadmedidaController::cl
 
 Route::resource('parroquias', App\Http\Controllers\ParroquiaController::class)->middleware('auth');
 Route::resource('municipios', App\Http\Controllers\MunicipioController::class)->middleware('auth');
+Route::resource('estados', App\Http\Controllers\EstadoController::class)->middleware('auth');
 
+Route::resource('gabinetes', App\Http\Controllers\GabineteController::class)->middleware('auth');
+Route::resource('corporaciones', App\Http\Controllers\CorporacioneController::class)->middleware('auth');
+Route::resource('responsables', App\Http\Controllers\ResponsableController::class)->middleware('auth');

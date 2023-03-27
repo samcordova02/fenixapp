@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Corporacion
+ * Class Corporacione
  *
  * @property $id
  * @property $nombre
  * @property $rif
  * @property $imagen
  * @property $telefono
- * @property $gabinte_id
- * @property $dirrecion_id
+ * @property $gabinete_id
+ * @property $direcion_id
  * @property $responsable
  * @property $correo
  * @property $created_at
@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Corporacion extends Model
+class Corporacione extends Model
 {
     
     static $rules = [
@@ -30,8 +30,8 @@ class Corporacion extends Model
 		'rif' => 'required',
 		'imagen' => 'required',
 		'telefono' => 'required',
-		'gabinte_id' => 'required',
-		'dirrecion_id' => 'required',
+		'gabinete_id' => 'required',
+		'direcion_id' => 'required',
 		'responsable' => 'required',
 		'correo' => 'required',
     ];
@@ -43,7 +43,7 @@ class Corporacion extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','rif','imagen','telefono','gabinte_id','dirrecion_id','responsable','correo'];
+    protected $fillable = ['nombre','rif','imagen','telefono','gabinete_id','direcion_id','responsable','correo'];
 
 
 

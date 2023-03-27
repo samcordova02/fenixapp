@@ -20,6 +20,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    
+
+
 
                     {{ __('probado 123') }}
                 </div>

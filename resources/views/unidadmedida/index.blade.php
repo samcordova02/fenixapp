@@ -16,11 +16,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Unidades medida') }}
+                                {{ __('Unidades medidas') }}
                                 <div class="small-box bg-warning">
                                     <div class="inner">
-                                    <h3>44</h3>
-                                    <p>User Registrations</p>
+                                    <h3>0</h3>
+                                    <p>Unidades de Medidas Registradas</p>
                                     </div>
                                     <div class="icon">
                                     <i class="ion ion-person-add"></i>
@@ -28,13 +28,10 @@
                                     <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                     </div>
                                     </div>
-
-
                             </span>
-
                              <div class="float-right">
                                 <a href="{{ route('unidadmedidas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear Nueva Unidad de Medidas') }}
+                                  {{ __('Crear Unidad de Medidas') }}
                                   <div class="col-lg-3 col-6">
 <br>
                                   
@@ -54,9 +51,9 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-										<th>Nombre</th>
-
+                                 		<th>Nombre</th>
+                                        <th>Creado Por El Usuario</th>
+                                        <th>Opciones</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -64,9 +61,8 @@
                                     @foreach ($unidadmedidas as $unidadmedida)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $unidadmedida->nombre }}</td>
-
+                                        	<td>{{ $unidadmedida->nombre }}</td>
+                                            <td>por programar </td>
                                             <td>
                                                 <form action="{{ route('unidadmedidas.destroy',$unidadmedida->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('unidadmedidas.show',$unidadmedida->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>

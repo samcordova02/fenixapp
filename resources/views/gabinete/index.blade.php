@@ -1,9 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    Gabinete
-@endsection
+@section('title', 'Registro de Gabinetes ')
 
+@section('content_header')
+    <h1> Registro de Gabinetes </h1>
+@stop
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -13,12 +14,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Gabinete') }}
+                                {{ __('Gabinetes') }}
                             </span>
 
                              <div class="float-right">
                                 <a href="{{ route('gabinetes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Crear Nuevo') }}
                                 </a>
                               </div>
                         </div>
@@ -76,4 +77,17 @@
             </div>
         </div>
     </div>
-@endsection
+    @stop
+
+    @section('css')
+        
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{{ asset('css/submit.css') }}">
+        
+    @stop
+    
+    @section('js')
+    <script src="{{ asset('js/submit.js') }}"></script>
+    
+    
+    @stop
