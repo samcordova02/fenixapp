@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $corporacione->name ?? "{{ __('Show') Corporacione" }}
+    {{ $proyecto->name ?? "{{ __('Show') Proyecto" }}
 @endsection
 
 @section('content')
@@ -11,10 +11,10 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Corporacione</span>
+                            <span class="card-title">{{ __('Show') }} Proyecto</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('corporaciones.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('proyectos.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
@@ -22,50 +22,44 @@
                         
                         <div class="form-group">
                             <strong>Nombre:</strong>
-                            {{ $corporacione->nombre }}
+                            {{ $proyecto->nombre }}
                         </div>
                         <div class="form-group">
-                            <strong>Rif:</strong>
-                            {{ $corporacione->rif }}
+                            <strong>Duracion:</strong>
+                            {{ $proyecto->duracion }}
                         </div>
                         <div class="form-group">
-                            <strong>Imagen:</strong>
-                            {{ $corporacione->imagen }}
+                            <strong>Costo:</strong>
+                            {{ $proyecto->costo }}
                         </div>
                         <div class="form-group">
-                            <strong>Telefono:</strong>
-                            {{ $corporacione->telefono }}
+                            <strong>Fecha Inicio:</strong>
+                            {{ $proyecto->fecha_inicio }}
                         </div>
                         <div class="form-group">
-<<<<<<< HEAD
-                            <strong>Gabinete Id:</strong>
-                            {{ $corporacione->gabinete_id }}
+                            <strong>Fecha Fin:</strong>
+                            {{ $proyecto->fecha_fin }}
                         </div>
                         <div class="form-group">
-                            <strong>Direcion Id:</strong>
-                            {{ $corporacione->direcion_id }}
+                            <strong>Status:</strong>
+                            {{ $proyecto->status }}
                         </div>
                         <div class="form-group">
-=======
->>>>>>> proyecto
-                            <strong>Responsable:</strong>
-                            {{ $corporacione->responsable }}
+                            <strong>Cantidad:</strong>
+                            {{ $proyecto->cantidad }}
                         </div>
                         <div class="form-group">
-                            <strong>Correo:</strong>
-                            {{ $corporacione->correo }}
-                        </div>
-<<<<<<< HEAD
-=======
-                        <div class="form-group">
-                            <strong>Gabinete Id:</strong>
-                            {{ $corporacione->gabinete_id }}
+                            <strong>Unidad Id:</strong>
+                            {{ $proyecto->unidad_id }}
                         </div>
                         <div class="form-group">
-                            <strong>Direcion Id:</strong>
-                            {{ $corporacione->direcion_id }}
+                            <strong>Responsable Id:</strong>
+                            {{ $proyecto->responsable_id }}
                         </div>
->>>>>>> proyecto
+                        <div class="form-group">
+                            <strong>Corporacion Id:</strong>
+                            {{ $proyecto->corporacion_id }}
+                        </div>
 
                     </div>
                 </div>

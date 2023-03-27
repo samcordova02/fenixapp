@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $created_at
  * @property $updated_at
  *
+ * @property Corporacione[] $corporaciones
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -40,5 +41,13 @@ class Gabinete extends Model
     protected $fillable = ['nombre','responsable','imagen','telefono','correo'];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function corporaciones()
+    {
+        return $this->hasMany('App\Models\Corporacione', 'gabinete_id', 'id');
+    }
+    
 
 }

@@ -20,7 +20,11 @@ return new class extends Migration
             $table -> string('correo');
             $table -> string('cargo');
             $table -> string('imagen');
-            $table -> string('corporacion_id');
+            
+            $table->bigInteger('corporacion_id')-> unsigned ();
+            $table->foreign('corporacion_id')->references('id')->on('corporaciones')->onDelete('cascade');
+    
+
             $table->timestamps();
         });
     }

@@ -19,12 +19,24 @@ return new class extends Migration
             $table -> string('rif');
             $table -> string('imagen');
             $table -> string('telefono');
-            $table -> string('gabinete_id');
-            $table -> string('direcion_id');
+
+            
+            
             $table -> string('responsable');
 
             $table -> string('correo');
-            $table->timestamps();
+            $table->bigInteger('gabinete_id')->unsigned();
+            $table->bigInteger('direcion_id')->unsigned();
+
+            $table->foreign('gabinete_id')->references('id')->on('gabinetes')->onDelete('cascade');
+            $table->foreign('direcion_id')->references('id')->on('direcciones')->onDelete('cascade');
+
+
+
+
+
+
+          $table->timestamps();
         });
     }
 
