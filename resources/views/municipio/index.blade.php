@@ -2,9 +2,7 @@
 
 @section('title', 'Registro Municipios ')
 
-@section('content_header')
-    <h1> Registro de Municipios</h1>
-@stop
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -36,8 +34,9 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                    	<th>Nombre</th>
-										<th>Estados Id</th>
+                                    	<th>Nombre Del Municipio </th>
+										<th>Estado</th>
+                                        <th>Opciones </th>
 
                                         <th></th>
                                     </tr>
@@ -48,7 +47,7 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $municipio->nombre }}</td>
-											<td>{{ $municipio->estados_id }}</td>
+											<td>{{ $municipio->estado->nombre }}</td>
 
                                             <td>
                                                 <form action="{{ route('municipios.destroy',$municipio->id) }}" method="POST">

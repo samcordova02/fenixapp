@@ -1,10 +1,8 @@
 @extends('adminlte::page')
 
-@section('title', 'Registro de Corporaciones ')
+@section('title', 'Registro de Parroquis ')
 
-@section('content_header')
-    <h1> Registro de Corporaciones</h1>
-@stop
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -14,12 +12,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Parroquia') }}
+                                {{ __('Parroquias') }}
                             </span>
 
                              <div class="float-right">
                                 <a href="{{ route('parroquias.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Crear Nueva') }}
                                 </a>
                               </div>
                         </div>
@@ -37,8 +35,10 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Nombre</th>
-										<th>Municipios Id</th>
+										<th>Nombre De la Parroquia</th>
+										<th>Municipios </th>
+                                        <th>Estado </th>
+                                        <th>Opciones  </th>
 
                                         <th></th>
                                     </tr>
@@ -49,7 +49,9 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $parroquia->nombre }}</td>
-											<td>{{ $parroquia->municipios_id }}</td>
+											<td>{{ $parroquia->municipio->nombre }}</td>
+                                            <td>{{$parroquia->municipio->estado->nombre }}</td>
+                                          
 
                                             <td>
                                                 <form action="{{ route('parroquias.destroy',$parroquia->id) }}" method="POST">
