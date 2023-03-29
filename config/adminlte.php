@@ -316,7 +316,7 @@ return [
 
         [
             'text' => 'Estadisticas',
-            'url'  => 'admin/settings',
+            'route'  => 'home',
             'icon' => 'fas fa-chart-pie',
         ],
 
@@ -341,24 +341,9 @@ return [
             
         ],
 
-
-        [
-            'text' => 'Estados',
-            'route'  => 'estados.index',
-            'icon' => 'fas fa-fw fa-landmark',
-        ],
-   [
-            'text' => 'Municipios',
-            'route'  => 'municipios.index',
-            'icon' => 'fas fa-fw fa-landmark',
-        ],
-        [
-            'text' => 'Parroquias',
-            'route'  => 'parroquias.index',
-            'icon'    => 'fas fa-fw fa-landmark',
-            
-          
-        ],
+  
+       
+     
 
 
 
@@ -368,20 +353,78 @@ return [
             'icon' => 'fas fa-fw fa-people-carry',
          
         ],
+
         [
             'text' => 'Responsable',
             'route'  => 'responsables.index',
             'icon' => 'fas fa-fw fa-user',
         ],
-
         [
-            'text' => 'Usuarios',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user-tie',
-         
+            'text' => 'Opciones De Direcciones',
+            'icon' => 'fas fa-fw fa-map-marked',
+            'icon_color' => 'primary',
+            'url'  => '#',
+          
+            'submenu' => [
+                [
+                    'text' => 'Estados',
+                    'route'  => 'estados.index',
+                    'icon' => 'fas fa-fw fa-map-marked',
+                ],
+            
+                [
+                    'text' => 'Municipios',
+                    'route'  => 'municipios.index',
+                    'icon' => 'fas fa-fw fa-landmark',
+                ],
+                [
+                    'text' => 'Parroquias',
+                    'route'  => 'parroquias.index',
+                    'icon'    => 'fas fa-fw fa-landmark',
+                    
+                  
+                ],
+
+
+                [
+                    'text' => 'Mapas',
+                    'route'  => 'parroquias.index',
+                    'icon'    => 'fas fa-fw fa-landmark',
+                    
+                  
+                ],
+
+
+
+    
+            ],
         ],
+           
 
 
+
+
+    //Seguridad
+    [
+        'text' => 'Seguridad',
+        'icon' => 'fa fa-lock',
+        'icon_color' => 'lightblue',
+        'url'  => '#',
+      
+        'submenu' => [
+            [
+                'text' => 'Usuarios',
+                'icon' => 'fas fa-fw fa-user-tie', //<i class="fas fa-user-tie"></i>
+                'icon_color' => 'lightblue',
+                'route'  => 'users.index',
+            
+            ],
+        
+
+
+        ],
+    ],
+       
 
      
 

@@ -35,3 +35,4 @@ Route::resource('corporaciones', App\Http\Controllers\CorporacioneController::cl
 Route::resource('responsables', App\Http\Controllers\ResponsableController::class)->middleware('auth');
 
 Route::resource('proyectos', App\Http\Controllers\ProyectoController::class)->middleware('auth');
+Route::resource('users', \App\Http\Controllers\UserController::class) ->middleware('auth');

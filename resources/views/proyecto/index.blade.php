@@ -11,20 +11,26 @@
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
-                            
-                            <div class="col-3 col-sm-12 col-md-3">
-                                <div class="info-box mb-6">
-                                  <span class="info-box-icon bg-blue elevation-1"><i class="fas fa-users"></i></span>
-                    
-                                  <div class="info-box-content">
-                                    <span class="info-box-text">Data de Proyectos/span>
-                                    <span class="info-box-number">Registrados :</span>
-                                  </div>
-                                  <!-- /.info-box-content -->
-                                </div>
-                                <!-- /.info-box -->
-                              </div>
-
+                            <section class="content">
+                                <div class="container-fluid">
+                           
+                                                                    
+                                    <!-- /.col -->
+                                    <div class="col-md-12 col-sm-6 col-12">
+                                      <div class="info-box">
+                                        <span class="info-box-icon bg-blue"><i class="far fa-copy"></i></span>
+                          
+                                        <div class="info-box-content">
+                                          <span class="info-box-text">Proyectos </span>
+                                          <span class="info-box-number"> </span>
+                                        </div>
+                                        
+                                      </div>
+                                     
+                        
+                                
+                                 
+                
                              <div class="float-right">
                                 <a href="{{ route('proyectos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear Nuevo Proyecto') }}
