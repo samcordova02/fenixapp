@@ -1,8 +1,7 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    Proyecto
-@endsection
+@section('title', 'Dashboard')
+
 
 @section('content')
     <div class="container-fluid">
@@ -12,13 +11,23 @@
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
-                            <span id="card_title">
-                                {{ __('Proyecto') }}
-                            </span>
+                            
+                            <div class="col-3 col-sm-12 col-md-3">
+                                <div class="info-box mb-6">
+                                  <span class="info-box-icon bg-blue elevation-1"><i class="fas fa-users"></i></span>
+                    
+                                  <div class="info-box-content">
+                                    <span class="info-box-text">Data de Proyectos/span>
+                                    <span class="info-box-number">Registrados :</span>
+                                  </div>
+                                  <!-- /.info-box-content -->
+                                </div>
+                                <!-- /.info-box -->
+                              </div>
 
                              <div class="float-right">
                                 <a href="{{ route('proyectos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Crear Nuevo Proyecto') }}
                                 </a>
                               </div>
                         </div>
@@ -67,12 +76,12 @@
 											<td>{{ $proyecto->corporacion_id }}</td>
 
                                             <td>
-                                                <form action="{{ route('proyectos.destroy',$proyecto->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('proyectos.show',$proyecto->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('proyectos.edit',$proyecto->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('proyectos.destroy',$proyecto->id) }}" method="POST" class="submit-prevent-form">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('proyectos.show',$proyecto->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('proyectos.edit',$proyecto->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm submit-prevent-button"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -86,4 +95,19 @@
             </div>
         </div>
     </div>
-@endsection
+
+    @stop
+
+    @section('css')
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{{ asset('css/submit.css') }}">
+     
+        <link rel="stylesheet" href="/css/admin_custom.css">
+    @stop
+    
+    @section('js')
+
+    <script src="{{ asset('js/submit.js') }}"></script>
+        <script> console.log('Hi!'); </script>
+    @stop
+    

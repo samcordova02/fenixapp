@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    {{ $proyecto->name ?? "{{ __('Show') Proyecto" }}
-@endsection
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <h1>Proyectos</h1>
+@stop
 
 @section('content')
     <section class="content container-fluid">
@@ -11,7 +13,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Proyecto</span>
+                            <span class="card-title">{{ __('Show') }} Proyectos</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('proyectos.index') }}"> {{ __('Back') }}</a>
@@ -66,4 +68,19 @@
             </div>
         </div>
     </section>
-@endsection
+
+    @stop
+
+    @section('css')
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{{ asset('css/submit.css') }}">
+     
+        <link rel="stylesheet" href="/css/admin_custom.css">
+    @stop
+    
+    @section('js')
+
+    <script src="{{ asset('js/submit.js') }}"></script>
+        <script> console.log('Hi!'); </script>
+    @stop
+    

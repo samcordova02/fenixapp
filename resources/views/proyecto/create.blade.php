@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    {{ __('Create') }} Proyecto
-@endsection
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <h1>Proyectos</h1>
+@stop
 
 @section('content')
     <section class="content container-fluid">
@@ -13,10 +15,10 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Proyecto</span>
+                        <span class="card-title">{{ __('Create') }} Proyectos</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('proyectos.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('proyectos.store') }}"  role="form" enctype="multipart/form-data" class="submit-prevent-form">
                             @csrf
 
                             @include('proyecto.form')
@@ -27,4 +29,35 @@
             </div>
         </div>
     </section>
-@endsection
+
+    @stop
+
+    @section('css')
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{{ asset('css/submit.css') }}">
+     
+        <link rel="stylesheet" href="/css/admin_custom.css">
+    @stop
+    
+    @section('js')
+
+    <script src="{{ asset('js/submit.js') }}"></script>
+
+        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.ckeditor').ckeditor();
+            });
+        </script>
+
+{{--<script type="text/javascript">
+    CKEDITOR.replace('nombre', {
+        filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
+        filebrowserUploadMethod: 'form'
+    });
+</script> --}}
+
+        <script> console.log('Hi!'); </script>
+    @stop
+    

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @extends('adminlte::page')
 
 @section('title', 'Registro de Corporaciones ')
@@ -6,13 +5,6 @@
 @section('content_header')
     <h1> Registro de Corporaciones</h1>
 @stop
-=======
-@extends('layouts.app')
-
-@section('template_title')
-    Corporacione
-@endsection
->>>>>>> proyecto
 
 @section('content')
     <div class="container-fluid">
@@ -23,20 +15,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-<<<<<<< HEAD
-                                {{ __('Corporaciones') }}
-=======
                                 {{ __('Corporacione') }}
->>>>>>> proyecto
                             </span>
 
                              <div class="float-right">
                                 <a href="{{ route('corporaciones.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-<<<<<<< HEAD
-                                  {{ __('Crear Nuevo') }}
-=======
                                   {{ __('Create New') }}
->>>>>>> proyecto
                                 </a>
                               </div>
                         </div>
@@ -56,21 +40,12 @@
                                         
 										<th>Nombre</th>
 										<th>Rif</th>
-<<<<<<< HEAD
-										<th>Imagen De la Coporacion</th>
-										<th>Telefono</th>
-										<th>Gabinete </th>
-										<th>Direcion </th>
-										<th>Responsable</th>
-										<th>Correo</th>
-=======
 										<th>Imagen</th>
 										<th>Telefono</th>
 										<th>Responsable</th>
 										<th>Correo</th>
 										<th>Gabinete Id</th>
 										<th>Direcion Id</th>
->>>>>>> proyecto
 
                                         <th></th>
                                     </tr>
@@ -84,20 +59,6 @@
 											<td>{{ $corporacione->rif }}</td>
 											<td>{{ $corporacione->imagen }}</td>
 											<td>{{ $corporacione->telefono }}</td>
-<<<<<<< HEAD
-											<td>{{ $corporacione->gabinete_id }}</td>
-											<td>{{ $corporacione->direcion_id }}</td>
-											<td>{{ $corporacione->responsable }}</td>
-											<td>{{ $corporacione->correo }}</td>
-
-                                            <td>
-                                                <form action="{{ route('corporaciones.destroy',$corporacione->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('corporaciones.show',$corporacione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver ') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('corporaciones.edit',$corporacione->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Borrar') }}</button>
-=======
 											<td>{{ $corporacione->responsable }}</td>
 											<td>{{ $corporacione->correo }}</td>
 											<td>{{ $corporacione->gabinete_id }}</td>
@@ -110,7 +71,6 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
->>>>>>> proyecto
                                                 </form>
                                             </td>
                                         </tr>
@@ -124,7 +84,6 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
     @stop
 
     @section('css')
@@ -140,6 +99,3 @@
     
     @stop
     
-=======
-@endsection
->>>>>>> proyecto

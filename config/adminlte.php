@@ -109,7 +109,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/AdminLTELogo1.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -314,20 +314,17 @@ return [
         ],
     
 
-       
         [
-            'text' => 'Datos Estadisticos',
+            'text' => 'Estadisticas',
             'url'  => 'admin/settings',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'fas fa-chart-pie',
         ],
 
         [
             'text' => 'Proyectos',
-            'url'  => 'admin/settings',
-            'icon' => 'far fa-fw fa-file',
+            'route'  => 'proyectos.index',
+            'icon' => 'fas fa-chalkboard-teacher',
         ],
-
-
 
         [
             'text' => 'Corporaciones',
@@ -340,6 +337,8 @@ return [
             'text' => 'Gabinete',
             'route'  => 'gabinetes.index',
             'icon' => 'fas fa-fw fa-layer-group',
+
+            
         ],
 
 
@@ -361,12 +360,7 @@ return [
           
         ],
 
-        [
-            'text' => 'Usuarios',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user-tie',
-         
-        ],
+
 
         [
             'text' => 'Unidades de Medida',
@@ -380,7 +374,12 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
 
-
+        [
+            'text' => 'Usuarios',
+            'url'  => 'admin/settings',
+            'icon' => 'fas fa-fw fa-user-tie',
+         
+        ],
 
 
 

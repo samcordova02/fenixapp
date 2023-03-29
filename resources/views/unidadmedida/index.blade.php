@@ -17,7 +17,7 @@
 
                             <span id="card_title">
                                 {{ __('Unidades medidas') }}
-                                <div class="small-box bg-warning">
+                                <div class="small-box bg-blue">
                                     <div class="inner">
                                     <h3>0</h3>
                                     <p>Unidades de Medidas Registradas</p>

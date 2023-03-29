@@ -33,3 +33,5 @@ Route::resource('estados', App\Http\Controllers\EstadoController::class)->middle
 Route::resource('gabinetes', App\Http\Controllers\GabineteController::class)->middleware('auth');
 Route::resource('corporaciones', App\Http\Controllers\CorporacioneController::class)->middleware('auth');
 Route::resource('responsables', App\Http\Controllers\ResponsableController::class)->middleware('auth');
+
+Route::resource('proyectos', App\Http\Controllers\ProyectoController::class)->middleware('auth');
