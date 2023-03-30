@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Detalles del Proyecto')
 
 @section('content_header')
     <h1>Proyectos</h1>
@@ -13,10 +13,17 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Proyectos</span>
+                            <span class="card-title">{{ __('Detalles') }}</span>
                         </div>
+                        &nbsp;&nbsp;
+                        &nbsp;&nbsp;
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('proyectos.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('proyectos.index') }}"> {{ __('Regresar') }}</a>
+                        </div>
+                        &nbsp;&nbsp;
+                        &nbsp;&nbsp;
+                        <div class="float-right">
+                            <a class="btn btn-primary" href="{{ url('#') }}"> {{ __('Imprimir') }}</a>
                         </div>
                     </div>
 
@@ -51,16 +58,16 @@
                             {{ $proyecto->cantidad }}
                         </div>
                         <div class="form-group">
-                            <strong>Unidad Id:</strong>
-                            {{ $proyecto->unidad_id }}
+                            <strong>Unidad de Medida:</strong>
+                            {{ $proyecto->unidadmedida->nombre }}
                         </div>
                         <div class="form-group">
-                            <strong>Responsable Id:</strong>
-                            {{ $proyecto->responsable_id }}
+                            <strong>Responsable:</strong>
+                            {{ $proyecto->responsable->nombre }}
                         </div>
                         <div class="form-group">
-                            <strong>Corporacion Id:</strong>
-                            {{ $proyecto->corporacion_id }}
+                            <strong>Corporacion:</strong>
+                            {{ $proyecto->corporacione->nombre }}
                         </div>
 
                     </div>

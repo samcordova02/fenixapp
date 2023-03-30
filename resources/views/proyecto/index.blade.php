@@ -5,32 +5,35 @@
 
 @section('content')
     <div class="container-fluid">
+
+         <!-- /.col -->
+         <div class="row">
+         <section class="content">
+            <div class="container-fluid">
+         <div class="col-md-12 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-blue"><i class="far fa-copy"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Proyectos </span>
+                <span class="info-box-number"> </span>
+              </div>
+              
+            </div>
+        </div>
+        </div>
+        </div>
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
-                            <section class="content">
-                                <div class="container-fluid">
-                           
-                                                                    
-                                    <!-- /.col -->
-                                    <div class="col-md-12 col-sm-6 col-12">
-                                      <div class="info-box">
-                                        <span class="info-box-icon bg-blue"><i class="far fa-copy"></i></span>
-                          
-                                        <div class="info-box-content">
-                                          <span class="info-box-text">Proyectos </span>
-                                          <span class="info-box-number"> </span>
-                                        </div>
-                                        
-                                      </div>
-                                     
-                        
-                                
-                                 
-                
+                            <span id="card_title">
+                                {{ __('') }}
+                            </span>
+
                              <div class="float-right">
                                 <a href="{{ route('proyectos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear Nuevo Proyecto') }}
@@ -38,13 +41,43 @@
                               </div>
                         </div>
                     </div>
+
+                    <?php 
+                    $eliminar = false;
+                    $editar = false;
+                    $registrar = false;
+                    ?>
+
                     @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
+                        
+
+                        <?php 
+                        if($message == 'eliminar')
+                        {
+                            $eliminar = true;
+                        }
+                        elseif($message == 'editar')
+                        {
+                            $editar = true;
+                        }
+                        elseif($message == 'registrar')
+                        {
+                            $registrar = true;
+                        }
+
+                        
+                        ?>
                     @endif
 
                     <div class="card-body">
+
+                            <form method="GET">
+                            <div class="input-group mb-3">
+                              <input type="text" name="search" class="form-control" placeholder="Buscar">
+                              <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
+                            </div>
+                            </form>
+
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
@@ -54,15 +87,13 @@
 										<th>Nombre</th>
 										<th>Duracion</th>
 										<th>Costo</th>
-										<th>Fecha Inicio</th>
-										<th>Fecha Fin</th>
-										<th>Status</th>
+										
+										<th>Estado</th>
 										<th>Cantidad</th>
-										<th>Unidad Id</th>
-										<th>Responsable Id</th>
-										<th>Corporacion Id</th>
+										
+										<th>Corporacion</th>
 
-                                        <th></th>
+                                        <th>Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -70,24 +101,22 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $proyecto->nombre }}</td>
-											<td>{{ $proyecto->duracion }}</td>
-											<td>{{ $proyecto->costo }}</td>
-											<td>{{ $proyecto->fecha_inicio }}</td>
-											<td>{{ $proyecto->fecha_fin }}</td>
+											<td>{{ 'Responsable: ' . $proyecto->responsable->nombre . ' Proyecto: ' .$proyecto->nombre }}</td>
+											<td>{{ $proyecto->duracion .' Inicio: ' . $proyecto->fecha_inicio . ' Fin: ' . $proyecto->fecha_fin }}</td>
+											<td>{{ number_format($proyecto->costo, 2,',','.') }}</td>
+											
 											<td>{{ $proyecto->status }}</td>
-											<td>{{ $proyecto->cantidad }}</td>
-											<td>{{ $proyecto->unidad_id }}</td>
-											<td>{{ $proyecto->responsable_id }}</td>
-											<td>{{ $proyecto->corporacion_id }}</td>
+											<td>{{ $proyecto->cantidad . ' ' . $proyecto->unidadmedida->nombre }}</td>
+											
+											<td>{{ $proyecto->corporacione->nombre }}</td>
 
                                             <td>
                                                 <form action="{{ route('proyectos.destroy',$proyecto->id) }}" method="POST" class="submit-prevent-form">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('proyectos.show',$proyecto->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('proyectos.edit',$proyecto->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                    <a class="btn btn-sm btn-primary btn-block" href="{{ route('proyectos.show',$proyecto->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Detalles') }}</a>
+                                                    <a class="btn btn-sm btn-success btn-block" href="{{ route('proyectos.edit',$proyecto->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm submit-prevent-button"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm submit-prevent-button btn-block show-alert-delete-box"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -114,6 +143,18 @@
     @section('js')
 
     <script src="{{ asset('js/submit.js') }}"></script>
-        <script> console.log('Hi!'); </script>
+    <script type="text/javascript" src="{{ asset('js/alertaeliminar.js') }}"></script>
+
+
+    @if($eliminar)
+    <script type="text/javascript" src="{{ asset('js/eliminar.js') }}"></script>
+    @elseif ($editar)
+    <script type="text/javascript" src="{{ asset('js/editar.js') }}"></script>
+    @elseif ($registrar)
+    <script type="text/javascript" src="{{ asset('js/registrar.js') }}"></script>
+    @endif
+
+
+    <script> console.log('Hi!'); </script>
     @stop
     
