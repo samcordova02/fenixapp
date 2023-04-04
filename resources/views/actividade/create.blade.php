@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    {{ __('Create') }} Actividade
-@endsection
+@section('title', 'Actividades')
+
+@section('content_header')
+    <h1>Actividades</h1>
+@stop
 
 @section('content')
     <section class="content container-fluid">
@@ -13,10 +15,10 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Actividade</span>
+                        <span class="card-title">{{ __('Crear') }} </span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('actividades.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('actividades.store') }}"  role="form" enctype="multipart/form-data" class="submit-prevent-form">
                             @csrf
 
                             @include('actividade.form')
@@ -27,4 +29,15 @@
             </div>
         </div>
     </section>
-@endsection
+
+    @stop
+
+    @section('css')
+        <link rel="stylesheet" href="/css/admin_custom.css">
+    @stop
+    
+    @section('js')
+    
+    <script src="{{ asset('js/submit.js') }}"></script>
+        <script> console.log('Hi!'); </script>
+    @stop

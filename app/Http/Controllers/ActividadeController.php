@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Actividade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class ActividadeController
@@ -47,8 +49,25 @@ class ActividadeController extends Controller
 
         $actividade = Actividade::create($request->all());
 
+        /**
+         * Codigo para colocar la imagen aqui abajo.
+         */
+        $path_img = 'actividades';
+
+        $file = $request->file('imagen');
+
+        try {
+        Storage::disk('public')->put($path_img . '/' . $file->getClientOriginalName(), File::get($file));
+        }
+        catch (\Exception $exception) {
+        return response('error',400);
+        }
+         /**
+          * Fin de Codigo
+          */
+
         return redirect()->route('actividades.index')
-            ->with('success', 'Actividade created successfully.');
+            ->with('success', 'registrar');
     }
 
     /**
@@ -91,7 +110,7 @@ class ActividadeController extends Controller
         $actividade->update($request->all());
 
         return redirect()->route('actividades.index')
-            ->with('success', 'Actividade updated successfully');
+            ->with('success', 'editar');
     }
 
     /**
@@ -104,6 +123,6 @@ class ActividadeController extends Controller
         $actividade = Actividade::find($id)->delete();
 
         return redirect()->route('actividades.index')
-            ->with('success', 'Actividade deleted successfully');
+            ->with('success', 'eliminar');
     }
 }
