@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Corporacione;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class CorporacioneController
@@ -45,10 +46,30 @@ class CorporacioneController extends Controller
     {
         request()->validate(Corporacione::$rules);
 
-        $corporacione = Corporacione::create($request->all());
+       
+
+        /**
+         * Codigo para colocar la imagen aqui abajo.
+         */
+       
+        $file = $request->file('imagen')->store('public/imagenes');
+        $url = Storage::url($file);
+        
+
+       // $request->merge(['imagen' => 0]);
+
+        /**
+         * Fin de Codigo
+         */
+
+          //El valor de imagen que me guarda no es el correcto no funciona el merge para el tipo file en mi caso input imagen
+          $corporacione = Corporacione::create($request->all());
+          //luego de creado actualizar la imagen solamente
+          $corporacione->imagen = $url;
+          $corporacione->save();
 
         return redirect()->route('corporaciones.index')
-            ->with('success', 'Corporacione created successfully.');
+            ->with('success', 'Corporacione created successfully. ' . $url);
     }
 
     /**
