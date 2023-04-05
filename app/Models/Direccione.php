@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property $updated_at
  *
  * @property Actividade[] $actividades
- * @property Corporacione[] $corporaciones
  * @property Municipio $municipio
  * @property Parroquia $parroquia
  * @package App
@@ -46,14 +45,6 @@ class Direccione extends Model
     public function actividades()
     {
         return $this->hasMany('App\Models\Actividade', 'direcion_id', 'id');
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function corporaciones()
-    {
-        return $this->hasMany('App\Models\Corporacione', 'direcion_id', 'id');
     }
     
     /**

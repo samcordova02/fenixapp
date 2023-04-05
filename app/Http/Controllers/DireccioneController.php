@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Direccione;
+use App\Models\Municipio;
+use App\Models\Parroquia;
 use Illuminate\Http\Request;
 
 /**
@@ -32,7 +34,9 @@ class DireccioneController extends Controller
     public function create()
     {
         $direccione = new Direccione();
-        return view('direccione.create', compact('direccione'));
+        $municipio= Municipio::pluck('nombre','id');
+        $parroquia= Parroquia::pluck('nombre','id');
+        return view('direccione.create', compact('direccione', 'municipio','parroquia'));
     }
 
     /**
@@ -48,7 +52,7 @@ class DireccioneController extends Controller
         $direccione = Direccione::create($request->all());
 
         return redirect()->route('direcciones.index')
-            ->with('success', 'Direccione created successfully.');
+            ->with('success', 'Direccion Registrada Con Exito.');
     }
 
     /**
@@ -73,8 +77,10 @@ class DireccioneController extends Controller
     public function edit($id)
     {
         $direccione = Direccione::find($id);
+        $municipio= Municipio::pluck('nombre','id');
+        $parroquia= Parroquia::pluck('nombre','id');
 
-        return view('direccione.edit', compact('direccione'));
+        return view('direccione.edit', compact('direccione' ,'municipio','parroquia'));
     }
 
     /**
@@ -91,7 +97,7 @@ class DireccioneController extends Controller
         $direccione->update($request->all());
 
         return redirect()->route('direcciones.index')
-            ->with('success', 'Direccione updated successfully');
+            ->with('success', 'Direccion Actualizada Con Exito');
     }
 
     /**
@@ -104,6 +110,6 @@ class DireccioneController extends Controller
         $direccione = Direccione::find($id)->delete();
 
         return redirect()->route('direcciones.index')
-            ->with('success', 'Direccione deleted successfully');
+            ->with('success', 'Direccion Eliminida Con Exito');
     }
 }

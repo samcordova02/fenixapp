@@ -7,13 +7,13 @@
             {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('municipios_id') }}
-            {{ Form::text('municipios_id', $direccione->municipios_id, ['class' => 'form-control' . ($errors->has('municipios_id') ? ' is-invalid' : ''), 'placeholder' => 'Municipios Id']) }}
+            {{ Form::label('Municipios') }}
+            {{ Form::select('municipios_id', $municipio, $direccione->municipios_id, ['class' => 'form-control' . ($errors->has('municipios_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione El Municipio']) }}
             {!! $errors->first('municipios_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('parroquias_id') }}
-            {{ Form::text('parroquias_id', $direccione->parroquias_id, ['class' => 'form-control' . ($errors->has('parroquias_id') ? ' is-invalid' : ''), 'placeholder' => 'Parroquias Id']) }}
+            {{ Form::label('Parroquias') }}
+            {{ Form::select('parroquias_id', $parroquia, $direccione->parroquias_id, ['class' => 'form-control' . ($errors->has('parroquias_id') ? ' is-invalid' : ''), 'placeholder' => 'Selecciones La Parroquia']) }}
             {!! $errors->first('parroquias_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 

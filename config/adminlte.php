@@ -367,6 +367,11 @@ return [
           
             'submenu' => [
                 [
+                    'text' => 'Direcciones',
+                    'route'  => 'direcciones.index',
+                    'icon' => 'fas fa-map-marker-alt',
+                ],
+                [
                     'text' => 'Estados',
                     'route'  => 'estados.index',
                     'icon' => 'fas fa-fw fa-map-marked',

@@ -36,3 +36,4 @@ Route::resource('responsables', App\Http\Controllers\ResponsableController::clas
 
 Route::resource('proyectos', App\Http\Controllers\ProyectoController::class)->middleware('auth');
 Route::resource('users', \App\Http\Controllers\UserController::class) ->middleware('auth');
+Route::resource('direcciones', \App\http\Controllers\DireccioneController::class) ->middleware('auth');

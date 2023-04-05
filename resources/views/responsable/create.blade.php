@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    {{ __('Create') }} Responsable
-@endsection
+@section('title', 'Opciones De Responsables')
+
+@section('content_header')
+    <h1>Registro de Responsables</h1>
+@stop
 
 @section('content')
     <section class="content container-fluid">
@@ -13,7 +15,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Responsable</span>
+                        <span class="card-title">{{ __('') }} </span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('responsables.store') }}"  role="form" enctype="multipart/form-data">
@@ -26,5 +28,10 @@
                 </div>
             </div>
         </div>
-    </section>
-@endsection
+
+    @stop
+    @section('js')
+    <script src="{{ asset('js/submit.js') }}"></script>
+    
+    
+    @stop
