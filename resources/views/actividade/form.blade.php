@@ -4,7 +4,7 @@
 
         <div class="row">
 
-       <div class="col-md-4">
+       <div class="col-md-12">
         <div class="form-group">
             {{ Form::label('nombre') }}
             {{ Form::text('nombre', $actividade->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
@@ -12,7 +12,14 @@
         </div>
     </div>
 
-        <div class="col-md-4">
+    <div class="col-md-12">
+        {{ Form::label('descripcion') }}
+        <textarea class="ckeditor form-control" name="descripcion">{{ $actividade->descripcion }}</textarea>
+        {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
+       
+    </div>
+
+    <div class="col-md-4">
         <div class="form-group">
             {{ Form::label('costo') }}
             {{ Form::text('costo', $actividade->costo, ['class' => 'form-control' . ($errors->has('costo') ? ' is-invalid' : ''), 'placeholder' => 'Costo']) }}
@@ -36,34 +43,28 @@
         </div>
     </div>
 
-        <div class="col-md-4">
-        <div class="form-group">
-            {{ Form::label('descripcion') }}
-            {{ Form::text('descripcion', $actividade->descripcion, ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripcion']) }}
-            {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-    </div>
+       
 
         <div class="col-md-4">
         <div class="form-group">
-            {{ Form::label('proyecto_id') }}
-            {{ Form::text('proyecto_id', $actividade->proyecto_id, ['class' => 'form-control' . ($errors->has('proyecto_id') ? ' is-invalid' : ''), 'placeholder' => 'Proyecto Id']) }}
+            {{ Form::label('proyectos') }}
+            {{ Form::select('proyecto_id', $proyectos, $actividade->proyecto_id, ['class' => 'form-control' . ($errors->has('proyecto_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione uno']) }}
             {!! $errors->first('proyecto_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
 
         <div class="col-md-4">
         <div class="form-group">
-            {{ Form::label('responsable_id') }}
-            {{ Form::text('responsable_id', $actividade->responsable_id, ['class' => 'form-control' . ($errors->has('responsable_id') ? ' is-invalid' : ''), 'placeholder' => 'Responsable Id']) }}
+            {{ Form::label('responsables') }}
+            {{ Form::select('responsable_id', $responsables, $actividade->responsable_id, ['class' => 'form-control' . ($errors->has('responsable_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione uno']) }}
             {!! $errors->first('responsable_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
 
         <div class="col-md-4">
         <div class="form-group">
-            {{ Form::label('direcion_id') }}
-            {{ Form::text('direcion_id', $actividade->direcion_id, ['class' => 'form-control' . ($errors->has('direcion_id') ? ' is-invalid' : ''), 'placeholder' => 'Direcion Id']) }}
+            {{ Form::label('direcciones') }}
+            {{ Form::select('direcion_id', $direcciones, $actividade->direcion_id, ['class' => 'form-control' . ($errors->has('direcion_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione uno']) }}
             {!! $errors->first('direcion_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>

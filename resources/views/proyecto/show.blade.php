@@ -20,8 +20,6 @@
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('proyectos.index') }}"> {{ __('Regresar') }}</a>
                         </div>
-                        &nbsp;&nbsp;
-                        &nbsp;&nbsp;
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ url('#') }}"> {{ __('Imprimir') }}</a>
                         </div>
@@ -29,46 +27,79 @@
 
                     <div class="card-body">
                         
+                        <div class="row">
+
+                        <div class="col-md-12">
                         <div class="form-group">
                             <strong>Nombre:</strong>
-                            {{ $proyecto->nombre }}
+                            {!! $proyecto->nombre !!}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Duracion:</strong>
                             {{ $proyecto->duracion }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Costo:</strong>
                             {{ $proyecto->costo }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Fecha Inicio:</strong>
                             {{ $proyecto->fecha_inicio }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Fecha Fin:</strong>
                             {{ $proyecto->fecha_fin }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Status:</strong>
                             {{ $proyecto->status }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Cantidad:</strong>
                             {{ $proyecto->cantidad }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Unidad de Medida:</strong>
                             {{ $proyecto->unidadmedida->nombre }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Responsable:</strong>
                             {{ $proyecto->responsable->nombre }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Corporacion:</strong>
                             {{ $proyecto->corporacione->nombre }}
                         </div>
+                    </div>
+
+                    </div>
 
                     </div>
                 </div>

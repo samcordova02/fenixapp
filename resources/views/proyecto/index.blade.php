@@ -46,6 +46,7 @@
                     $eliminar = false;
                     $editar = false;
                     $registrar = false;
+                    $error = false;
                     ?>
 
                     @if ($message = Session::get('success'))
@@ -63,6 +64,9 @@
                         elseif($message == 'registrar')
                         {
                             $registrar = true;
+                        }elseif($message == 'error')
+                        {
+                            $error = true;
                         }
 
                         
@@ -82,7 +86,7 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>Id</th>
                                         
 										<th>Nombre</th>
 										<th>Duracion</th>
@@ -99,9 +103,9 @@
                                 <tbody>
                                     @foreach ($proyectos as $proyecto)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $proyecto->id }}</td>
                                             
-											<td>{{ 'Responsable: ' . $proyecto->responsable->nombre . ' Proyecto: ' .$proyecto->nombre }}</td>
+											<td>{!! 'Responsable: ' . $proyecto->responsable->nombre . ' Proyecto: ' .$proyecto->nombre !!}</td>
 											<td>{{ $proyecto->duracion .' Inicio: ' . $proyecto->fecha_inicio . ' Fin: ' . $proyecto->fecha_fin }}</td>
 											<td>{{ number_format($proyecto->costo, 2,',','.') }}</td>
 											
@@ -152,6 +156,8 @@
     <script type="text/javascript" src="{{ asset('js/editar.js') }}"></script>
     @elseif ($registrar)
     <script type="text/javascript" src="{{ asset('js/registrar.js') }}"></script>
+    @elseif ($error)
+    <script type="text/javascript" src="{{ asset('js/error.js') }}"></script>
     @endif
 
 

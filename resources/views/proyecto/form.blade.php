@@ -9,7 +9,7 @@
         </div>
         --}}
 
-        <DIV class="row">
+        <div class="row">
         <div class="col-12 col-md-12">
         <textarea class="ckeditor form-control" name="nombre">{{ $proyecto->nombre }}</textarea>
         </div>

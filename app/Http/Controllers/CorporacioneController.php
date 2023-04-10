@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Corporacione;
+use App\Models\Gabinete;
+use App\Models\Direccione;
+use App\Models\Proyecto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,7 +22,30 @@ class CorporacioneController extends Controller
      */
     public function index()
     {
-        $corporaciones = Corporacione::paginate();
+       // $corporaciones = Corporacione::paginate();
+
+        $corporaciones = Corporacione::query()
+        ->when(request('search'), function($query){
+            return $query->where ('id', 'like', '%'.request('search').'%')
+                         
+                         ->orWhere('nombre', 'like', '%'.request('search').'%')
+                         ->orWhere('rif', 'like', '%'.request('search').'%')
+                         ->orWhere('telefono', 'like', '%'.request('search').'%')
+                         ->orWhere('responsable', 'like', '%'.request('search').'%')
+                         ->orWhere('correo', 'like', '%'.request('search').'%')
+
+                         ->orWhereHas('gabinete', function($qa){
+                             $qa->where('nombre', 'like', '%'.request('search').'%');
+                         })
+                         ->orWhereHas('direccione', function($qa){
+                            $qa->where('descripcion', 'like', '%'.request('search').'%');
+                         }) ;
+         },
+         function ($query) {
+             $query->orderBy('id', 'DESC');
+         })
+        ->paginate(25)
+        ->withQueryString();
 
         return view('corporacione.index', compact('corporaciones'))
             ->with('i', (request()->input('page', 1) - 1) * $corporaciones->perPage());
@@ -33,7 +59,10 @@ class CorporacioneController extends Controller
     public function create()
     {
         $corporacione = new Corporacione();
-        return view('corporacione.create', compact('corporacione'));
+
+        $gabinetes = Gabinete::pluck('nombre','id');
+        $direcciones = Direccione::pluck('descripcion','id');
+        return view('corporacione.create', compact('corporacione', 'gabinetes', 'direcciones'));
     }
 
     /**
@@ -69,7 +98,7 @@ class CorporacioneController extends Controller
           $corporacione->save();
 
         return redirect()->route('corporaciones.index')
-            ->with('success', 'Corporacione created successfully. ' . $url);
+            ->with('success', 'registrar');
     }
 
     /**
@@ -94,8 +123,10 @@ class CorporacioneController extends Controller
     public function edit($id)
     {
         $corporacione = Corporacione::find($id);
+        $gabinetes = Gabinete::pluck('nombre','id');
+        $direcciones = Direccione::pluck('descripcion','id');
 
-        return view('corporacione.edit', compact('corporacione'));
+        return view('corporacione.edit', compact('corporacione', 'gabinetes', 'direcciones'));
     }
 
     /**
@@ -112,7 +143,7 @@ class CorporacioneController extends Controller
         $corporacione->update($request->all());
 
         return redirect()->route('corporaciones.index')
-            ->with('success', 'Corporacione updated successfully');
+            ->with('success', 'editar');
     }
 
     /**
@@ -122,9 +153,17 @@ class CorporacioneController extends Controller
      */
     public function destroy($id)
     {
-        $corporacione = Corporacione::find($id)->delete();
+        
+        $proyecto = Proyecto::where('corporacion_id', $id)->exists();
 
+        if($proyecto){
         return redirect()->route('corporaciones.index')
-            ->with('success', 'Corporacione deleted successfully');
+            ->with('success', 'error');
+        }else {
+            $corporacione = Corporacione::find($id)->delete();
+            return redirect()->route('corporaciones.index')
+            ->with('success', 'eliminar');
+        }
+        
     }
 }

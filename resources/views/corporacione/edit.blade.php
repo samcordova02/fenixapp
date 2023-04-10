@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    {{ __('Update') }} Corporacione
-@endsection
+@section('title', 'Corporaciones')
+
+@section('content_header')
+    <h1>Corporaciones</h1>
+@stop
 
 @section('content')
     <section class="content container-fluid">
@@ -16,7 +18,7 @@
                         <span class="card-title">{{ __('Update') }} Corporacione</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('corporaciones.update', $corporacione->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('corporaciones.update', $corporacione->id) }}"  role="form" enctype="multipart/form-data" class="submit-prevent-form">
                             {{ method_field('PATCH') }}
                             @csrf
 
@@ -28,4 +30,16 @@
             </div>
         </div>
     </section>
-@endsection
+    @stop
+
+    @section('css')
+        <link rel="stylesheet" href="/css/admin_custom.css">
+    @stop
+    
+    @section('js')
+    
+    <script src="{{ asset('js/submit.js') }}"></script>
+        <script> console.log('Hi!'); </script>
+
+     
+    @stop

@@ -6,6 +6,7 @@ use App\Models\Proyecto;
 use App\Models\Unidadmedida;
 use App\Models\Responsable;
 use App\Models\Corporacione;
+use App\Models\Actividade;
 use Illuminate\Http\Request;
 
 /**
@@ -139,9 +140,20 @@ class ProyectoController extends Controller
      */
     public function destroy($id)
     {
-        $proyecto = Proyecto::find($id)->delete();
+        
 
-        return redirect()->route('proyectos.index')
+        //Validar que el proyecto no tenga ninguna actividad registrada.
+        $actividad = Actividade::where('proyecto_id', $id)->exists();
+
+        if($actividad){
+            return redirect()->route('proyectos.index')
+            ->with('success', 'error');
+        }else{
+            $proyecto = Proyecto::find($id)->delete();
+            return redirect()->route('proyectos.index')
             ->with('success', 'eliminar');
+        }
+
+        
     }
 }
