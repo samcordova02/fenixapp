@@ -140,7 +140,13 @@ class CorporacioneController extends Controller
     {
         request()->validate(Corporacione::$rules);
 
+        $file = $request->file('imagen')->store('public/imagenes');
+        $url = Storage::url($file);
+
         $corporacione->update($request->all());
+
+        $corporacione->imagen = $url;
+        $corporacione->save();
 
         return redirect()->route('corporaciones.index')
             ->with('success', 'editar');
@@ -164,6 +170,6 @@ class CorporacioneController extends Controller
             return redirect()->route('corporaciones.index')
             ->with('success', 'eliminar');
         }
-        
+
     }
 }
