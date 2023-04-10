@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Detalles del Proyecto')
 
 @section('content_header')
     <h1>Proyectos</h1>
@@ -13,55 +13,93 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Proyectos</span>
+                            <span class="card-title">{{ __('Detalles') }}</span>
+                        </div>
+                        &nbsp;&nbsp;
+                        &nbsp;&nbsp;
+                        <div class="float-right">
+                            <a class="btn btn-primary" href="{{ route('proyectos.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('proyectos.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ url('#') }}"> {{ __('Imprimir') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
+                        <div class="row">
+
+                        <div class="col-md-12">
                         <div class="form-group">
                             <strong>Nombre:</strong>
-                            {{ $proyecto->nombre }}
+                            {!! $proyecto->nombre !!}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Duracion:</strong>
                             {{ $proyecto->duracion }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Costo:</strong>
                             {{ $proyecto->costo }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Fecha Inicio:</strong>
                             {{ $proyecto->fecha_inicio }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Fecha Fin:</strong>
                             {{ $proyecto->fecha_fin }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Status:</strong>
                             {{ $proyecto->status }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Cantidad:</strong>
                             {{ $proyecto->cantidad }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
-                            <strong>Unidad Id:</strong>
-                            {{ $proyecto->unidad_id }}
+                            <strong>Unidad de Medida:</strong>
+                            {{ $proyecto->unidadmedida->nombre }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
-                            <strong>Responsable Id:</strong>
-                            {{ $proyecto->responsable_id }}
+                            <strong>Responsable:</strong>
+                            {{ $proyecto->responsable->nombre }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
-                            <strong>Corporacion Id:</strong>
-                            {{ $proyecto->corporacion_id }}
+                            <strong>Corporacion:</strong>
+                            {{ $proyecto->corporacione->nombre }}
                         </div>
+                    </div>
+
+                    </div>
 
                     </div>
                 </div>

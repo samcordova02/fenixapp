@@ -9,9 +9,9 @@
         </div>
         --}}
 
-        <DIV class="row">
+        <div class="row">
         <div class="col-12 col-md-12">
-        <textarea class="ckeditor form-control" name="nombre"></textarea>
+        <textarea class="ckeditor form-control" name="nombre">{{ $proyecto->nombre }}</textarea>
         </div>
 
         <div class="col-12 col-md-3">
@@ -65,7 +65,7 @@
         <div class="col-12 col-md-3">
         <div class="form-group">
             {{ Form::label('unidad de medida') }}
-            {{ Form::text('unidad_id', $proyecto->unidad_id, ['class' => 'form-control' . ($errors->has('unidad_id') ? ' is-invalid' : ''), 'placeholder' => 'Unidad Id']) }}
+            {{ Form::select('unidad_id', $unidades, $proyecto->unidad_id, ['class' => 'form-control' . ($errors->has('unidad_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione uno']) }}
             {!! $errors->first('unidad_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
@@ -73,7 +73,7 @@
         <div class="col-12 col-md-3">
         <div class="form-group">
             {{ Form::label('responsable') }}
-            {{ Form::text('responsable_id', $proyecto->responsable_id, ['class' => 'form-control' . ($errors->has('responsable_id') ? ' is-invalid' : ''), 'placeholder' => 'Responsable Id']) }}
+            {{ Form::select('responsable_id', $responsables, $proyecto->responsable_id, ['class' => 'form-control' . ($errors->has('responsable_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione uno']) }}
             {!! $errors->first('responsable_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
@@ -81,7 +81,7 @@
         <div class="col-12 col-md-3">
         <div class="form-group">
             {{ Form::label('corporacion') }}
-            {{ Form::text('corporacion_id', $proyecto->corporacion_id, ['class' => 'form-control' . ($errors->has('corporacion_id') ? ' is-invalid' : ''), 'placeholder' => 'Corporacion Id']) }}
+            {{ Form::select('corporacion_id', $corporaciones, $proyecto->corporacion_id, ['class' => 'form-control' . ($errors->has('corporacion_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione uno']) }}
             {!! $errors->first('corporacion_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>

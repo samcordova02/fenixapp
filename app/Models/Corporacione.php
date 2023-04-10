@@ -32,7 +32,7 @@ class Corporacione extends Model
     static $rules = [
 		'nombre' => 'required',
 		'rif' => 'required',
-		'imagen' => 'required',
+		'imagen' => 'required|image|max:2048',
 		'telefono' => 'required',
 		'responsable' => 'required',
 		'correo' => 'required',

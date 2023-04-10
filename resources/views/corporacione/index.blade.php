@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Registro de Corporaciones ')
+@section('title', 'Corporaciones')
 
 @section('content_header')
-    <h1> Registro de Corporaciones</h1>
+    <h1>Corporaciones</h1>
 @stop
 
 @section('content')
@@ -15,28 +15,61 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Corporacione') }}
+                                {{ __('') }}
                             </span>
 
                              <div class="float-right">
                                 <a href="{{ route('corporaciones.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Crear Nueva Corporacion') }}
                                 </a>
                               </div>
                         </div>
                     </div>
+                    
+                    @php 
+                    $eliminar = false;
+                    $editar = false;
+                    $registrar = false;
+                    $error = false;
+                    @endphp
+
                     @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
+                        
+                        @php 
+                        if($message == 'eliminar')
+                        {
+                            $eliminar = true;
+                        }
+                        elseif($message == 'editar')
+                        {
+                            $editar = true;
+                        }
+                        elseif($message == 'registrar')
+                        {
+                            $registrar = true;
+                        }
+                        elseif($message == 'error')
+                        {
+                            $error = true;
+                        }
+                     @endphp
+
                     @endif
 
                     <div class="card-body">
+
+                        <form method="GET">
+                            <div class="input-group mb-3">
+                              <input type="text" name="search" class="form-control" placeholder="Buscar">
+                              <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
+                            </div>
+                            </form>
+
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>Id</th>
                                         
 										<th>Nombre</th>
 										<th>Rif</th>
@@ -44,33 +77,34 @@
 										<th>Telefono</th>
 										<th>Responsable</th>
 										<th>Correo</th>
-										<th>Gabinete Id</th>
-										<th>Direcion Id</th>
+										<th>Gabinete</th>
+										<th>Direccion</th>
 
-                                        <th></th>
+                                        <th>Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($corporaciones as $corporacione)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $corporacione->id }}</td>
                                             
 											<td>{{ $corporacione->nombre }}</td>
 											<td>{{ $corporacione->rif }}</td>
-											<td>{{ $corporacione->imagen }}</td>
+                                            <td><img src="{{ asset ($corporacione->imagen) }}" class="img-responsive" style="max-height: 100px; max-width: 100px" alt=""></td>
+											
 											<td>{{ $corporacione->telefono }}</td>
 											<td>{{ $corporacione->responsable }}</td>
 											<td>{{ $corporacione->correo }}</td>
-											<td>{{ $corporacione->gabinete_id }}</td>
-											<td>{{ $corporacione->direcion_id }}</td>
+											<td>{{ $corporacione->gabinete->nombre }}</td>
+											<td>{{ $corporacione->direccione->descripcion }}</td>
 
                                             <td>
-                                                <form action="{{ route('corporaciones.destroy',$corporacione->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('corporaciones.show',$corporacione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('corporaciones.edit',$corporacione->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('corporaciones.destroy',$corporacione->id) }}" method="POST" class="submit-prevent-form">
+                                                    <a class="btn btn-sm btn-primary btn-block" href="{{ route('corporaciones.show',$corporacione->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Detalles') }}</a>
+                                                    <a class="btn btn-sm btn-success btn-block" href="{{ route('corporaciones.edit',$corporacione->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <button type="submit" class="btn btn-danger submit-prevent-button btn-sm btn-block show-alert-delete-box"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -95,7 +129,16 @@
     
     @section('js')
     <script src="{{ asset('js/submit.js') }}"></script>
-    
+    <script type="text/javascript" src="{{ asset('js/alertaeliminar.js') }}"></script>
+    @if($eliminar)
+    <script type="text/javascript" src="{{ asset('js/eliminar.js') }}"></script>
+    @elseif ($editar)
+    <script type="text/javascript" src="{{ asset('js/editar.js') }}"></script>
+    @elseif ($registrar)
+    <script type="text/javascript" src="{{ asset('js/registrar.js') }}"></script>
+    @elseif ($error)
+    <script type="text/javascript" src="{{ asset('js/error.js') }}"></script>
+    @endif
     
     @stop
     

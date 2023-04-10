@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    {{ $corporacione->name ?? "{{ __('Show') Corporacione" }}
-@endsection
+@section('title', 'Corporaciones')
+
+@section('content_header')
+    <h1>Corporaciones</h1>
+@stop
 
 @section('content')
     <section class="content container-fluid">
@@ -11,65 +13,91 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Corporacione</span>
+                            <span class="card-title">{{ __('Detalles') }} </span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('corporaciones.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('corporaciones.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
+
+                        <div class="row">
                         
+                            <div class="col-md-6">
                         <div class="form-group">
                             <strong>Nombre:</strong>
                             {{ $corporacione->nombre }}
                         </div>
+                    </div>
+
+                        <div class="col-md-6">
                         <div class="form-group">
                             <strong>Rif:</strong>
                             {{ $corporacione->rif }}
                         </div>
+                    </div>
+
+                        <div class="col-md-12">
                         <div class="form-group">
                             <strong>Imagen:</strong>
-                            {{ $corporacione->imagen }}
+                            <img src="{{ asset ($corporacione->imagen) }}" class="rounded mx-auto d-block" style="max-height: 600px; max-width: 600px" alt="">
+                            
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Telefono:</strong>
                             {{ $corporacione->telefono }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
-<<<<<<< HEAD
-                            <strong>Gabinete Id:</strong>
-                            {{ $corporacione->gabinete_id }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Direcion Id:</strong>
-                            {{ $corporacione->direcion_id }}
-                        </div>
-                        <div class="form-group">
-=======
->>>>>>> proyecto
                             <strong>Responsable:</strong>
                             {{ $corporacione->responsable }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
                             <strong>Correo:</strong>
                             {{ $corporacione->correo }}
                         </div>
-<<<<<<< HEAD
-=======
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
-                            <strong>Gabinete Id:</strong>
-                            {{ $corporacione->gabinete_id }}
+                            <strong>Gabinete:</strong>
+                            {{ $corporacione->gabinete->nombre }}
                         </div>
+                    </div>
+
+                        <div class="col-md-4">
                         <div class="form-group">
-                            <strong>Direcion Id:</strong>
-                            {{ $corporacione->direcion_id }}
+                            <strong>Direccion:</strong>
+                            {{ $corporacione->direccione->descripcion }}
                         </div>
->>>>>>> proyecto
+                    </div>
+
+                    </div>
 
                     </div>
                 </div>
             </div>
         </div>
     </section>
-@endsection
+    @stop
+
+    @section('css')
+        <link rel="stylesheet" href="/css/admin_custom.css">
+    @stop
+    
+    @section('js')
+    
+    <script src="{{ asset('js/submit.js') }}"></script>
+        <script> console.log('Hi!'); </script>
+
+     
+    @stop

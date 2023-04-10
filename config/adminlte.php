@@ -327,6 +327,12 @@ return [
         ],
 
         [
+            'text' => 'Actividades',
+            'route'  => 'actividades.index',
+            'icon' => 'far fa-calendar-check',
+        ],
+
+        [
             'text' => 'Corporaciones',
             'route'  => 'corporaciones.index',
             'icon' => 'fas fa-fw fa-sitemap',

@@ -51,13 +51,13 @@
             });
         </script>
 
-{{--<script type="text/javascript">
+{{-- <script type="text/javascript">
     CKEDITOR.replace('nombre', {
         filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
         filebrowserUploadMethod: 'form'
     });
 </script> --}}
 
-        <script> console.log('Hi!'); </script>
+            
     @stop
     

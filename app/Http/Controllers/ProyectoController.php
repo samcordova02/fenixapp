@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Proyecto;
+use App\Models\Unidadmedida;
+use App\Models\Responsable;
+use App\Models\Corporacione;
+use App\Models\Actividade;
 use Illuminate\Http\Request;
 
 /**
@@ -18,7 +22,33 @@ class ProyectoController extends Controller
      */
     public function index()
     {
-        $proyectos = Proyecto::paginate();
+      //  $proyectos = Proyecto::paginate();
+
+        $proyectos = Proyecto::query()
+        ->when(request('search'), function($query){
+            return $query->where ('id', 'like', '%'.request('search').'%')
+                         
+                         ->orWhere('nombre', 'like', '%'.request('search').'%')
+
+                         
+                         ->orWhereHas('corporacione', function($q){
+                          $q->where('nombre', 'like', '%'.request('search').'%');
+                          })
+                           ->orWhereHas('responsable', function($qa){
+                             $qa->where('nombre', 'like', '%'.request('search').'%');
+                         })
+                         ->orWhereHas('unidadmedida', function($qa){
+                            $qa->where('nombre', 'like', '%'.request('search').'%');
+                         }) ;
+         },
+         function ($query) {
+             $query->orderBy('id', 'DESC');
+         })
+        ->paginate(25)
+        ->withQueryString();
+
+
+        $unidades = Unidadmedida::pluck('nombre', 'id');
 
         return view('proyecto.index', compact('proyectos'))
             ->with('i', (request()->input('page', 1) - 1) * $proyectos->perPage());
@@ -32,7 +62,12 @@ class ProyectoController extends Controller
     public function create()
     {
         $proyecto = new Proyecto();
-        return view('proyecto.create', compact('proyecto'));
+
+        $unidades = Unidadmedida::pluck('nombre', 'id');
+        $responsables = Responsable::pluck('nombre', 'id');
+        $corporaciones = Corporacione::pluck('nombre', 'id');
+
+        return view('proyecto.create', compact('proyecto', 'unidades', 'responsables', 'corporaciones'));
     }
 
     /**
@@ -48,7 +83,7 @@ class ProyectoController extends Controller
         $proyecto = Proyecto::create($request->all());
 
         return redirect()->route('proyectos.index')
-            ->with('success', 'Proyecto created successfully.');
+            ->with('success', 'registrar');
     }
 
     /**
@@ -74,7 +109,11 @@ class ProyectoController extends Controller
     {
         $proyecto = Proyecto::find($id);
 
-        return view('proyecto.edit', compact('proyecto'));
+        $unidades = Unidadmedida::pluck('nombre', 'id');
+        $responsables = Responsable::pluck('nombre', 'id');
+        $corporaciones = Corporacione::pluck('nombre', 'id');
+
+        return view('proyecto.edit', compact('proyecto', 'unidades', 'responsables', 'corporaciones'));
     }
 
     /**
@@ -91,7 +130,7 @@ class ProyectoController extends Controller
         $proyecto->update($request->all());
 
         return redirect()->route('proyectos.index')
-            ->with('success', 'Proyecto updated successfully');
+            ->with('success', 'editar');
     }
 
     /**
@@ -101,9 +140,20 @@ class ProyectoController extends Controller
      */
     public function destroy($id)
     {
-        $proyecto = Proyecto::find($id)->delete();
+        
 
-        return redirect()->route('proyectos.index')
-            ->with('success', 'Proyecto deleted successfully');
+        //Validar que el proyecto no tenga ninguna actividad registrada.
+        $actividad = Actividade::where('proyecto_id', $id)->exists();
+
+        if($actividad){
+            return redirect()->route('proyectos.index')
+            ->with('success', 'error');
+        }else{
+            $proyecto = Proyecto::find($id)->delete();
+            return redirect()->route('proyectos.index')
+            ->with('success', 'eliminar');
+        }
+
+        
     }
 }

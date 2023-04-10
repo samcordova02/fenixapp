@@ -230,7 +230,7 @@
                     <div class="description-block mb-4">
                       <div class="sparkbar pad" data-color="#fff">90,70,90,70,75,80,70</div>
                       <h5 class="description-header">8390</h5>
-                      <span class="description-text">Visits</span>
+                      <span class="description-text">Visitas</span>
                     </div>
                     <!-- /.description-block -->
                     <div class="description-block mb-4">

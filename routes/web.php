@@ -35,5 +35,7 @@ Route::resource('corporaciones', App\Http\Controllers\CorporacioneController::cl
 Route::resource('responsables', App\Http\Controllers\ResponsableController::class)->middleware('auth');
 
 Route::resource('proyectos', App\Http\Controllers\ProyectoController::class)->middleware('auth');
-Route::resource('users', \App\Http\Controllers\UserController::class) ->middleware('auth');
-Route::resource('direcciones', \App\http\Controllers\DireccioneController::class) ->middleware('auth');
+
+Route::resource('direcciones', \App\http\Controllers\DireccioneController::class)->middleware('auth');
+Route::resource('users', \App\Http\Controllers\UserController::class)->middleware('auth');
+Route::resource('actividades', \App\Http\Controllers\ActividadeController::class)->middleware('auth');
