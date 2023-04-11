@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Responsable;
+use App\Models\Corporacione;
+
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class ResponsableController
@@ -32,7 +36,8 @@ class ResponsableController extends Controller
     public function create()
     {
         $responsable = new Responsable();
-        return view('responsable.create', compact('responsable'));
+        $corporaciones = Corporacione::pluck('nombre','id');
+        return view('responsable.create', compact('corporaciones','responsable'));
     }
 
     /**
@@ -44,8 +49,12 @@ class ResponsableController extends Controller
     public function store(Request $request)
     {
         request()->validate(Responsable::$rules);
+        $file = $request->file('imagen')->store('public/imagenes/responsable');
+        $url = Storage::url($file);
 
         $responsable = Responsable::create($request->all());
+        $responsable->imagen = $url;
+        $responsable->save();
 
         return redirect()->route('responsables.index')
             ->with('success', 'Responsable created successfully.');
@@ -73,8 +82,9 @@ class ResponsableController extends Controller
     public function edit($id)
     {
         $responsable = Responsable::find($id);
+        $corporaciones = Corporacione::pluck('nombre','id');
 
-        return view('responsable.edit', compact('responsable'));
+        return view('responsable.edit', compact('corporaciones','responsable'));
     }
 
     /**
@@ -87,8 +97,12 @@ class ResponsableController extends Controller
     public function update(Request $request, Responsable $responsable)
     {
         request()->validate(Responsable::$rules);
+        $file = $request->file('imagen')->store('public/imagenes/responsable');
+        $url = Storage::url($file);
 
         $responsable->update($request->all());
+        $responsable->imagen = $url;
+        $responsable->save();
 
         return redirect()->route('responsables.index')
             ->with('success', 'Responsable updated successfully');

@@ -1,10 +1,28 @@
 @extends('adminlte::page')
 
-@section('title', 'Corporaciones')
+@section('title', 'Corporaciones Y Entes')
 
-@section('content_header')
-    <h1>Corporaciones</h1>
-@stop
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+<!-- iCheck -->
+<link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<!-- JQVMap -->
+<link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="dist/css/adminlte.min.css">
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+<!-- Daterange picker -->
+<link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+<!-- summernote -->
+<link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
 
 @section('content')
     <div class="container-fluid">
@@ -13,14 +31,23 @@
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-
-                            <span id="card_title">
-                                {{ __('') }}
-                            </span>
+             <div class="col-lg-3 col-2">
+                <div class="small-box bg-blue">
+                    <div class="inner">
+                      <h3></h3>
+                    <p>  Corporaciones Y Entes </p>
+                    </div>
+                    <div class="icon">
+                      <i class="	fas fa-bezier-curve"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+                  </div>
+                </div>
+                           
 
                              <div class="float-right">
                                 <a href="{{ route('corporaciones.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear Nueva Corporacion') }}
+                                  {{ __('Nueva Corporacion o Entes') }}
                                 </a>
                               </div>
                         </div>
@@ -69,11 +96,11 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>Id</th>
+                                        <th>N°</th>
                                         
 										<th>Nombre</th>
 										<th>Rif</th>
-										<th>Imagen</th>
+										<th>Imagen De Perfil</th>
 										<th>Telefono</th>
 										<th>Responsable</th>
 										<th>Correo</th>

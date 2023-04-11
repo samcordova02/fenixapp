@@ -66,14 +66,15 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>N°</th>
                                         
 										<th>Nombre</th>
+                              			<th>Imagen de Perfil</th>
+										<th>Corporacion</th>
 										<th>Telefono</th>
 										<th>Correo</th>
 										<th>Cargo</th>
-										<th>Imagen</th>
-										<th>Corporacion</th>
+
                                         <th>Opciones </th>
 
 
@@ -86,15 +87,15 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $responsable->nombre }}</td>
-											<td>{{ $responsable->telefono }}</td>
+                                             <td><img src="{{ asset ($responsable->imagen) }}" class="img-responsive" style="max-height: 100px; max-width: 100px" alt=""></td>>
+											<td>{{ $responsable->corporacione->nombre }}</td>
+          									<td>{{ $responsable->telefono }}</td>
 											<td>{{ $responsable->correo }}</td>
 											<td>{{ $responsable->cargo }}</td>
-											<td>{{ $responsable->imagen }}</td>
-											<td>{{ $responsable->corporacion_id }}</td>
-                                      
+                            
                                             <td>
                                                 <form action="{{ route('responsables.destroy',$responsable->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('responsables.show',$responsable->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('ver') }}</a> <br>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('responsables.show',$responsable->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a> <br>
                                                     
                                                     <a class="btn btn-sm btn-success" href="{{ route('responsables.edit',$responsable->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf

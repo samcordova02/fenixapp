@@ -333,7 +333,7 @@ return [
         ],
 
         [
-            'text' => 'Corporaciones',
+            'text' => 'Corporaciones y Entes',
             'route'  => 'corporaciones.index',
             'icon' => 'fas fa-fw fa-sitemap',
         ],
