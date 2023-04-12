@@ -2,9 +2,6 @@
 
 @section('title', 'Corporaciones')
 
-@section('content_header')
-    <h1>Corporaciones</h1>
-@stop
 
 @section('content')
     <section class="content container-fluid">
@@ -13,7 +10,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Detalles') }} </span>
+                            <span class="card-title">{{ __('Detalles de la Corporacion o Entes') }} </span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('corporaciones.index') }}"> {{ __('Regresar') }}</a>
@@ -40,8 +37,8 @@
 
                         <div class="col-md-12">
                         <div class="form-group">
-                            <strong>Imagen:</strong>
-                            <img src="{{ asset ($corporacione->imagen) }}" class="rounded mx-auto d-block" style="max-height: 600px; max-width: 600px" alt="">
+                            <strong>Imagen de Perfil:</strong>
+                            <img src="{{ asset ($corporacione->imagen) }}" class="rounded mx-auto d-block" style="max-height: 500px; max-width: 500px" alt="">
                             
                         </div>
                     </div>
@@ -56,7 +53,7 @@
                         <div class="col-md-4">
                         <div class="form-group">
                             <strong>Responsable:</strong>
-                            {{ $corporacione->responsable }}
+                            {{ $corporacione->responsable}}
                         </div>
                     </div>
 

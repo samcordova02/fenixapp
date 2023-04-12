@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gabinete;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class GabineteController
@@ -44,8 +45,13 @@ class GabineteController extends Controller
     public function store(Request $request)
     {
         request()->validate(Gabinete::$rules);
+        $file = $request->file('imagen')->store('public/imagenes/gabinete');
+        $url = Storage::url($file);
+        
 
         $gabinete = Gabinete::create($request->all());
+        $gabinete->imagen = $url;
+        $gabinete->save();
 
         return redirect()->route('gabinetes.index')
             ->with('success', 'Gabinete created successfully.');
@@ -88,7 +94,13 @@ class GabineteController extends Controller
     {
         request()->validate(Gabinete::$rules);
 
+        $file = $request->file('imagen')->store('public/imagenes/gabinete');
+        $url = Storage::url($file);
+
         $gabinete->update($request->all());
+        $gabinete->imagen = $url;
+        $gabinete->save();
+
 
         return redirect()->route('gabinetes.index')
             ->with('success', 'Gabinete updated successfully');
