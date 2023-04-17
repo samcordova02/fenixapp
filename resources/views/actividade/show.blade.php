@@ -16,10 +16,10 @@
                             <span class="card-title">{{ __('Detalles') }}</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('actividades.index') }}"> {{ __('Regresar') }}</a>
+                            <a class="btn btn-outline-primary" href="{{ route('actividades.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ url('#') }}"> {{ __('Imprimir') }}</a>
+                            <a class="btn btn-outline-primary" href="{{ url('#') }}"> {{ __('Imprimir') }}</a>
                         </div>
                     </div>
 

@@ -54,9 +54,17 @@
         </div>
     </div>
 
+    <div class="col-12 col-md-3">
+        <div class="form-group">
+            {{ Form::label('Tipo') }}
+            {{ Form::select('tipo', (['INGRESO'=>'INGRESO', 'EGRESO'=>'EGRESO']), $proyecto->tipo, ['class' => 'form-control' . ($errors->has('tipo') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione uno']) }}
+            {!! $errors->first('tipo', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+    </div>
+
         <div class="col-12 col-md-3">
         <div class="form-group">
-            {{ Form::label('cantidad') }}
+            {{ Form::label('cantidad de actividades') }}
             {{ Form::text('cantidad', $proyecto->cantidad, ['class' => 'form-control' . ($errors->has('cantidad') ? ' is-invalid' : ''), 'placeholder' => 'Cantidad']) }}
             {!! $errors->first('cantidad', '<div class="invalid-feedback">:message</div>') !!}
         </div>
@@ -90,6 +98,6 @@
 
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary submit-prevent-button">{{ __('Enviar') }}</button>
+        <button type="submit" class="btn btn-outline-primary submit-prevent-button">{{ __('Enviar') }}</button>
     </div>
 </div>

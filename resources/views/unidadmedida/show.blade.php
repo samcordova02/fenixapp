@@ -15,7 +15,7 @@
                             <span class="card-title">{{ __('Show') }} Unidadmedida</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('unidadmedidas.index') }}"> {{ __('Regresar') }}</a>
+                            <a class="btn btn-outline-primary" href="{{ route('unidadmedidas.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                     </div>
 

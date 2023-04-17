@@ -69,10 +69,18 @@
         </div>
     </div>
 
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ Form::label('imagen') }}
+            {{ Form::file('imagen', ['class' => 'form-control' . ($errors->has('imagen') ? ' is-invalid' : ''), 'placeholder' => 'Imagen']) }}
+            {!! $errors->first('imagen', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+    </div>
+
     </div>
 
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary submit-prevent-button">{{ __('Enviar') }}</button>
+        <button type="submit" class="btn btn-outline-primary submit-prevent-button">{{ __('Enviar') }}</button>
     </div>
 </div>

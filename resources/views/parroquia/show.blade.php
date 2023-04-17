@@ -14,7 +14,7 @@
                             <span class="card-title">{{ __('Show') }} Parroquia</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('parroquias.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-outline-primary" href="{{ route('parroquias.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 

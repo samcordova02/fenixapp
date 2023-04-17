@@ -74,6 +74,6 @@
 
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary submit-prevent-button">{{ __('Enviar') }}</button>
+        <button type="submit" class="btn btn-outline-primary submit-prevent-button">{{ __('Enviar') }}</button>
     </div>
 </div>

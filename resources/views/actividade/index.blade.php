@@ -19,7 +19,7 @@
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('actividades.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('actividades.create') }}" class="btn btn-outline-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear Nueva Actividad') }}
                                 </a>
                               </div>
@@ -36,7 +36,7 @@
                     @if ($message = Session::get('success'))
                         
                         @php 
-                        if($message == 'eliminar')
+                        if($message == 'Eliminar')
                         {
                             $eliminar = true;
                         }
@@ -67,12 +67,12 @@
                             </form>
 
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-striped table-hover table-condensed table-bordered small">
                                 <thead class="thead">
                                     <tr>
-                                        <th>Id</th>
+                                        <th>N°</th>
                                         
-										<th>Nombre</th>
+										<th>Nombre De La Actividad  </th>
 										<th>Costo</th>
 										<th>Status</th>
 										<th>Cantidad</th>
@@ -80,6 +80,7 @@
 										<th>Proyecto</th>
 										<th>Responsable</th>
 										<th>Direccion</th>
+                                        <th>Imagen De la Actividad</th>
 
                                         <th>Opciones</th>
                                     </tr>
@@ -97,14 +98,15 @@
 											<td>{!! $actividade->proyecto->nombre !!}</td>
 											<td>{{ $actividade->responsable->nombre }}</td>
 											<td>{{ $actividade->direccione->descripcion }}</td>
-
+                                            <td><img src="{{ asset ($actividade->imagen) }}" class="img-responsive" style="max-height: 100px; max-width: 100px" alt=""></td>
+											
                                             <td>
                                                 <form action="{{ route('actividades.destroy',$actividade->id) }}" method="POST" class="submit-prevent-form">
-                                                    <a class="btn btn-sm btn-primary btn-block" href="{{ route('actividades.show',$actividade->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
-                                                    <a class="btn btn-sm btn-success btn-block" href="{{ route('actividades.edit',$actividade->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                    <a class="btn btn-sm btn-outline-primary btn-block" href="{{ route('actividades.show',$actividade->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                                    <a class="btn btn-sm btn-outline-success btn-block" href="{{ route('actividades.edit',$actividade->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger submit-prevent-button btn-sm btn-block show-alert-delete-box"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    <button type="submit" class="btn btn-outline-danger submit-prevent-button btn-sm btn-block show-alert-delete-box"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

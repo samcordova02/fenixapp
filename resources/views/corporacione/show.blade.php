@@ -13,7 +13,7 @@
                             <span class="card-title">{{ __('Detalles de la Corporacion o Entes') }} </span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('corporaciones.index') }}"> {{ __('Regresar') }}</a>
+                            <a class="btn btn-outline-primary" href="{{ route('corporaciones.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                     </div>
 

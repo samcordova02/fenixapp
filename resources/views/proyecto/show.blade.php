@@ -18,10 +18,10 @@
                         &nbsp;&nbsp;
                         &nbsp;&nbsp;
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('proyectos.index') }}"> {{ __('Regresar') }}</a>
+                            <a class="btn btn-outline-primary" href="{{ route('proyectos.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ url('#') }}"> {{ __('Imprimir') }}</a>
+                            <a class="btn btn-outline-primary" href="{{ url('#') }}"> {{ __('Imprimir') }}</a>
                         </div>
                     </div>
 

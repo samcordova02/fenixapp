@@ -155,8 +155,8 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
-                      <h5 class="description-header">$35,210.43</h5>
-                      <span class="description-text">TOTAL REVENUE</span>
+                      <h5 class="description-header"> {{ number_format($ingreso_estimado, 2,',','.') }} Bs</h5>
+                      <span class="description-text">TOTAL INGRESOS ESTIMADOS</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -164,8 +164,8 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
-                      <h5 class="description-header">$10,390.90</h5>
-                      <span class="description-text">TOTAL COST</span>
+                      <h5 class="description-header">{{ number_format($ingreso_actual_estimado, 2,',','.') }} Bs</h5>
+                      <span class="description-text">TOTAL INGRESOS</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -173,8 +173,8 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
-                      <h5 class="description-header">$24,813.53</h5>
-                      <span class="description-text">TOTAL PROFIT</span>
+                      <h5 class="description-header">{{ number_format($egreso_estimado, 2,',','.') }} Bs</h5>
+                      <span class="description-text">TOTAL EGRESOS ESTIMADOS</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -182,8 +182,8 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block">
                       <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
-                      <h5 class="description-header">1200</h5>
-                      <span class="description-text">GOAL COMPLETIONS</span>
+                      <h5 class="description-header">{{ number_format($egreso_actual_estimado, 2,',','.') }} Bs</h5>
+                      <span class="description-text">TOTAL EGRESOS</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -197,64 +197,157 @@
           <!-- /.col -->
         </div>
         <!-- /.row -->
+         <!-- Left col -->
+         
+        </section>
 
-        <!-- Main row -->
-        <div class="row">
-          <!-- Left col -->
-          <div class="col-md-8">
-            <!-- MAP & BOX PANE -->
-           <!-- MAP & BOX PANE -->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">US-Visitors Report</h3>
+        
 
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <div class="d-md-flex">
-                  <div class="p-1 flex-fill" style="overflow: hidden">
-                    <!-- Map will be created here -->
-                    <div id="world-map-markers" style="height: 325px; overflow: hidden">
-                      <div class="map"></div>
-                    </div>
-                  </div>
-                  <div class="card-pane-right bg-success pt-2 pb-2 pl-4 pr-4">
-                    <div class="description-block mb-4">
-                      <div class="sparkbar pad" data-color="#fff">90,70,90,70,75,80,70</div>
-                      <h5 class="description-header">8390</h5>
-                      <span class="description-text">Visitas</span>
-                    </div>
-                    <!-- /.description-block -->
-                    <div class="description-block mb-4">
-                      <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
-                      <h5 class="description-header">30%</h5>
-                      <span class="description-text">Referrals</span>
-                    </div>
-                    <!-- /.description-block -->
-                    <div class="description-block">
-                      <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
-                      <h5 class="description-header">70%</h5>
-                      <span class="description-text">Organic</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div><!-- /.card-pane-right -->
-                </div><!-- /.d-md-flex -->
-              </div>
-              <!-- /.card-body -->
-            </div>
-          
-            </div>
+
+<!-- Listado top de diez proyectos -->
+
+<div class="row">
+  <div class="col-12 col-md-8">
+<div class="card">
+  <div class="card-header border-transparent">
+  <h3 class="card-title">Proyectos de mayor impacto economico</h3>
+  <div class="card-tools">
+  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+  <i class="fas fa-minus"></i>
+  </button>
+  <button type="button" class="btn btn-tool" data-card-widget="remove">
+  <i class="fas fa-times"></i>
+  </button>
+  </div>
+  </div>
+  
+  <div class="card-body p-0" style="display: block;">
+  <div class="table-responsive">
+  <table class="table m-0">
+  <thead>
+  <tr>
+  <th>CODIGO ID</th>
+  <th>PROYECTO</th>
+  <th>ESTADO</th>
+  <th>VALOR</th>
+  <th>TIPO</th>
+  </tr>
+  </thead>
+  <tbody>
+@php
+  $max_proyectos = 0;
+@endphp
+
+
+    @foreach ($proyectos as $proyecto)
+    @if($max_proyectos<10)
+    <tr>
+      <td><a href="{{ route('proyectos.show',$proyecto->id) }}">{{ $proyecto->id }}</a></td>
+      <td>{!! $proyecto->nombre !!}</td>
+      <td><span class="badge badge-success">{{ $proyecto->status }}</span></td>
+      <td>
+      <div class="sparkbar text-right" data-color="#00a65a" data-height="20">{{ number_format($proyecto->costo, 2, ',','.') }} Bs</div>
+      </td>
+      <td>
+        <div class="sparkbar" data-color="#00a65a" data-height="20">{{ $proyecto->tipo }}</div>
+        </td>
+      </tr>
+      @endif
+      @php
+      $max_proyectos++;
+    @endphp
+      
+    @endforeach
+
+  
+  </tbody>
+  </table>
+  </div>
+  
+  </div>
+  
+  <div class="card-footer clearfix" style="display: block;">
+  <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Crear Nuevo Proyecto</a>
+  <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">Ver Todos los Proyectos</a>
+  </div>
+  
+  </div>
+
+</div> <!-- fin de proyectos -->
+
+
+<!--  actividades -->
+
+<div class="col-12 col-md-4">
+
+  <div class="card">
+    <div class="card-header">
+    <h3 class="card-title">Actividades Agregadas Recientemente</h3>
+    <div class="card-tools">
+    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+    <i class="fas fa-minus"></i>
+    </button>
+    <button type="button" class="btn btn-tool" data-card-widget="remove">
+    <i class="fas fa-times"></i>
+    </button>
+    </div>
+    </div>
+    
+    <div class="card-body p-0">
+    <ul class="products-list product-list-in-card pl-2 pr-2">
+
+      <!-- Aqui se agregaran las listas de actividades -->
+      @php
+  $max_actividades = 0;
+@endphp
+@foreach ($actividades as $actividad)
+
+@if ($max_actividades<10)
+  
+
+<li class="item">
+  <div class="product-img">
+  <img src="{{ asset($actividad->imagen) }}" alt="Actividad" class="img-size-50">
+  </div>
+  <div class="product-info">
+  <a href="{{ route('actividades.show',$actividad->id) }}" class="product-title"> {{ $actividad->nombre }}
+  <span class="badge badge-info float-right">{{ number_format($actividad->costo, 2, ',','.') }} Bs</span></a>
+  <span class="product-description">
+    {!! $actividad->descripcion !!}
+  </span>
+  </div>
+  </li>
+
+  @endif
+
+  @php
+  $max_actividades++;
+@endphp
+
+@endforeach
+      <!-- Fin de listado de actividades de mayor costo -->
+
+    
+    </ul>
+    </div>
+    
+    <div class="card-footer text-center">
+    <a href="javascript:void(0)" class="uppercase">Ver todas las actividades</a>
+    </div>
+    
+    </div>
+
+
+</div>
+<!-- Fin de Actividades -->
+
+
+</div>
+
     
 
-    </section>
+
+
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
