@@ -2,9 +2,6 @@
 
 @section('title', 'Actividades')
 
-@section('content_header')
-    <h1>Actividades</h1>
-@stop
 
 @section('content')
     <section class="content container-fluid">
@@ -15,8 +12,14 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Crear') }} </span>
+                        <span class="card-title">{{ __('Registro de Actividades') }}              </a></span>
                     </div>
+                    
+                        <div class="float-right">
+                            <a class="btn btn-primary" href="{{ route('actividades.index') }}"><i class="fas fa-reply-all"></i> {{ __('Regresar') }}</a>
+                        </div>
+                  
+
                     <div class="card-body">
                         <form method="POST" action="{{ route('actividades.store') }}"  role="form" enctype="multipart/form-data" class="submit-prevent-form">
                             @csrf
@@ -28,6 +31,7 @@
                 </div>
             </div>
         </div>
+        
     </section>
 
     @stop

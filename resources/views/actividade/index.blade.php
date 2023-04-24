@@ -71,8 +71,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>Id</th>
-                                        
-										<th>Nombre</th>
+                                      	<th>Nombre</th>
 										<th>Costo</th>
 										<th>Status</th>
 										<th>Cantidad</th>
@@ -100,7 +99,7 @@
 
                                             <td>
                                                 <form action="{{ route('actividades.destroy',$actividade->id) }}" method="POST" class="submit-prevent-form">
-                                                    <a class="btn btn-sm btn-primary btn-block" href="{{ route('actividades.show',$actividade->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                                    <a class="btn btn-sm btn-primary btn-block" href="{{ route('actividades.show',$actividade->id) }}"><i class="fas fa-print"></i> {{ __('Detalles') }}</a>
                                                     <a class="btn btn-sm btn-success btn-block" href="{{ route('actividades.edit',$actividade->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')

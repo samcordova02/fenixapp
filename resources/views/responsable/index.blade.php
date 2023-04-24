@@ -30,7 +30,7 @@
                 <div class="col-lg-2 col-2">
                 <div class="small-box bg-blue">
                     <div class="inner">
-                      <h3>00</h3>
+                
       
                       <p>Responsables Registrados</p>
                     </div>

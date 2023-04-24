@@ -88,7 +88,7 @@
                         <form method="GET">
                             <div class="input-group mb-3">
                               <input type="text" name="search" class="form-control" placeholder="Buscar">
-                              <button class="btn btn-outline-primary" type="submit" id="button-addon2">Buscar</button>
+                              <button class="btn btn-outline-dark" type="submit" id="button-addon2">Buscar</button>
                             </div>
                             </form>
 
@@ -131,7 +131,7 @@
                                                     <a class="btn btn-sm btn-success btn-block" href="{{ route('corporaciones.edit',$corporacione->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger submit-prevent-button btn-sm btn-block show-alert-delete-box"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                  <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

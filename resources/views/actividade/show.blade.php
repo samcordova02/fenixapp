@@ -1,10 +1,7 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Detalles de Actividades')
 
-@section('content_header')
-    <h1>Dashboard</h1>
-@stop
 
 @section('content')
     <section class="content container-fluid">
@@ -13,13 +10,13 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Detalles') }}</span>
+                            <span class="card-title">{{ __('Detalles de Actividades') }}</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('actividades.index') }}"> {{ __('Regresar') }}</a>
+                            <a class="btn btn-primary" href="{{ route('actividades.index') }}"><i class="fas fa-reply-all"></i> {{ __('Regresar') }}</a>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ url('#') }}"> {{ __('Imprimir') }}</a>
+                            <a class="btn btn-primary" href="{{ url('#') }}"><i class="fas fa-print"></i> {{ __('Imprimir') }}</a>
                         </div>
                     </div>
 
@@ -28,21 +25,27 @@
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <strong>Nombre:</strong>
+                            <strong>Nombre De La Actividad:</strong>
                             {{ $actividade->nombre }}
                         </div>
                     </div>
 
                         <div class="col-md-12">
                         <div class="form-group">
-                            <strong>Descripcion:</strong>
+                            <strong>Descripcion De La Actividad:</strong>
                             {!! $actividade->descripcion !!}
                         </div>
                     </div>
+                                            <div class="col-md-12">
+                        <div class="form-group">
+                            <strong>Imagen De La Actividad:</strong>
+                            <img src="{{ asset ($actividade->imagen) }}" class="rounded mx-auto d-block" style="max-height: 500px; max-width: 500px" alt="">
+                            
+                        </div>
 
                     <div class="col-md-12">
                         <div class="form-group">
-                            <strong>Proyecto:</strong>
+                            <strong>Proyecto :</strong>
                             {!! $actividade->proyecto->nombre !!}
                         </div>
                     </div>

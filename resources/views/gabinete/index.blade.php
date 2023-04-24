@@ -21,6 +21,12 @@
                                 </a>
                               </div>
                         </div>
+                            <form method="GET">
+                            <div class="input-group mb-12">
+                              <input type="text" name="search" class="form-control" placeholder="Buscar">
+                              <button class="btn btn-outline-dark" type="submit" id="button-addon2">Buscar</button>
+                            </div>
+                            </form>
                     </div>
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success">

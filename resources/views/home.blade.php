@@ -1,4 +1,3 @@
-
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
@@ -155,8 +154,8 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
-                      <h5 class="description-header">$35,210.43</h5>
-                      <span class="description-text">TOTAL REVENUE</span>
+                      <h5 class="description-header"> {{ number_format($ingreso_estimado, 2,',','.') }} Bs</h5>
+                      <span class="description-text">TOTAL INGRESOS ESTIMADOS</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -164,8 +163,8 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
-                      <h5 class="description-header">$10,390.90</h5>
-                      <span class="description-text">TOTAL COST</span>
+                      <h5 class="description-header">{{ number_format($ingreso_actual_estimado, 2,',','.') }} Bs</h5>
+                      <span class="description-text">TOTAL INGRESOS</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -173,8 +172,8 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
                       <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
-                      <h5 class="description-header">$24,813.53</h5>
-                      <span class="description-text">TOTAL PROFIT</span>
+                      <h5 class="description-header">{{ number_format($egreso_estimado, 2,',','.') }} Bs</h5>
+                      <span class="description-text">TOTAL EGRESOS ESTIMADOS</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -182,8 +181,8 @@
                   <div class="col-sm-3 col-6">
                     <div class="description-block">
                       <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
-                      <h5 class="description-header">1200</h5>
-                      <span class="description-text">GOAL COMPLETIONS</span>
+                      <h5 class="description-header">{{ number_format($egreso_actual_estimado, 2,',','.') }} Bs</h5>
+                      <span class="description-text">TOTAL EGRESOS</span>
                     </div>
                     <!-- /.description-block -->
                   </div>
@@ -197,64 +196,423 @@
           <!-- /.col -->
         </div>
         <!-- /.row -->
+         <!-- Left col -->
+         
+        </section>
 
-        <!-- Main row -->
-        <div class="row">
-          <!-- Left col -->
-          <div class="col-md-8">
-            <!-- MAP & BOX PANE -->
-           <!-- MAP & BOX PANE -->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">US-Visitors Report</h3>
+        
 
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
+
+<!-- Listado top de diez proyectos -->
+
+<div class="row">
+  <div class="col-12 col-md-8">
+<div class="card">
+  <div class="card-header border-transparent">
+  <h3 class="card-title">Proyectos de mayor impacto economico</h3>
+  <div class="card-tools">
+  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+  <i class="fas fa-minus"></i>
+  </button>
+  <button type="button" class="btn btn-tool" data-card-widget="remove">
+  <i class="fas fa-times"></i>
+  </button>
+  </div>
+  </div>
+  
+  <div class="card-body p-0" style="display: block;">
+  <div class="table-responsive">
+  <table class="table m-0">
+  <thead>
+  <tr>
+  <th>CODIGO ID</th>
+  <th>PROYECTO</th>
+  <th>ESTADO</th>
+  <th>VALOR</th>
+  <th>TIPO</th>
+  </tr>
+  </thead>
+  <tbody>
+
+
+
+    @foreach ($proyectos2 as $proyecto)
+  
+    <tr>
+      <td><a href="{{ route('proyectos.show',$proyecto->id) }}">{{ $proyecto->id }}</a></td>
+      <td>{!! $proyecto->nombre !!}</td>
+      <td><span class="badge badge-success">{{ $proyecto->status }}
+      
+        </span>
+      
+        {{ $obj_carbon->parse($proyecto->fecha_fin)->diffInDays($fecha_reciente) }} Dias Restantes
+      
+      </td>
+      <td>
+      <div class="sparkbar text-right" data-color="#00a65a" data-height="20">{{ number_format($proyecto->costo, 2, ',','.') }} Bs</div>
+      </td>
+      <td>
+        <div class="sparkbar" data-color="#00a65a" data-height="20">{{ $proyecto->tipo }}</div>
+        </td>
+      </tr>
+     
+      
+    @endforeach
+
+  
+  </tbody>
+  </table>
+  </div>
+  
+  </div>
+  
+  <div class="card-footer clearfix" style="display: block;">
+  <a href="{{ route('proyectos.create') }}" class="btn btn-sm btn-info float-left">Crear Nuevo Proyecto</a>
+  <a href="{{ route('proyectos.index') }}" class="btn btn-sm btn-secondary float-right">Ver Todos los Proyectos</a>
+  </div>
+  
+  </div>
+
+</div> <!-- fin de proyectos -->
+
+
+<!--  actividades -->
+
+<div class="col-12 col-md-4">
+
+  <div class="card">
+    <div class="card-header">
+    <h3 class="card-title">Actividades Agregadas Recientemente</h3>
+    <div class="card-tools">
+    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+    <i class="fas fa-minus"></i>
+    </button>
+    <button type="button" class="btn btn-tool" data-card-widget="remove">
+    <i class="fas fa-times"></i>
+    </button>
+    </div>
+    </div>
+    
+    <div class="card-body p-0">
+    <ul class="products-list product-list-in-card pl-2 pr-2">
+
+      <!-- Aqui se agregaran las listas de actividades -->
+      
+@foreach ($actividades2 as $actividad)
+
+
+<li class="item">
+  <div class="product-img">
+  <img src="{{ asset($actividad->imagen) }}" alt="Actividad" class="img-size-50">
+  </div>
+  <div class="product-info">
+  <a href="{{ route('actividades.show',$actividad->id) }}" class="product-title"> {{ $actividad->nombre }}
+  <span class="badge badge-info float-right">{{ number_format($actividad->costo, 2, ',','.') }} Bs</span></a>
+  <span class="product-description">
+    {!! $actividad->descripcion !!}
+  </span>
+  </div>
+  </li>
+
+ 
+@endforeach
+      <!-- Fin de listado de actividades de mayor costo -->
+
+    
+    </ul>
+    </div>
+    
+    <div class="card-footer text-center">
+    <a href="{{ route('actividades.index') }}" class="uppercase">Ver todas las actividades</a>
+    </div>
+    
+    </div>
+
+
+</div>
+<!-- Fin de Actividades -->
+
+
+<!-- Chart de ingresos y egresos -->
+
+
+<!-- Fin chart de ingresos y egresos -->
+
+<!-- Listado de corporaciones -->
+<div class="col-md-6">
+
+  <div class="card">
+  <div class="card-header">
+  <h3 class="card-title">Listado de Corporaciones y entes</h3>
+  <div class="card-tools">
+  
+  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+  <i class="fas fa-minus"></i>
+  </button>
+  <button type="button" class="btn btn-tool" data-card-widget="remove">
+  <i class="fas fa-times"></i>
+  </button>
+  </div>
+  </div>
+  
+  <div class="card-body p-0">
+  <ul class="users-list clearfix">
+  
+    @foreach ($corporaciones as $corporacion)
+    
+      <li>
+      <img src="{{ asset ($corporacion->imagen) }}" alt="User Image">
+      <a class="users-list-name" href="#">{{ $corporacion->nombre }}</a>
+      <span class="users-list-date">{{ $corporacion->rif }}</span>
+      </li>
+
+    @endforeach
+  
+    
+  </ul>
+  
+  </div>
+  
+  <div class="card-footer text-center">
+  <a href="{{ route('corporaciones.index') }}">Ver todas las corporaciones</a>
+  </div>
+  
+  </div>
+  
+  </div>
+<!-- Fin de listado de corporaciones -->
+
+<!-- Responsables de las actividades -->
+<div class="col-md-6">
+
+  <div class="card">
+  <div class="card-header">
+  <h3 class="card-title">Responsables</h3>
+  <div class="card-tools">
+  
+  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+  <i class="fas fa-minus"></i>
+  </button>
+  <button type="button" class="btn btn-tool" data-card-widget="remove">
+  <i class="fas fa-times"></i>
+  </button>
+  </div>
+  </div>
+  
+  <div class="card-body p-0">
+  <ul class="users-list clearfix">
+  
+    @foreach ($responsables as $responsable)
+    
+    <li>
+    <img src="{{ asset ($responsable->imagen) }}" alt="User Image">
+    <a class="users-list-name" href="#">{{ $responsable->nombre }}</a>
+    <span class="users-list-date">{{ $responsable->telefono }}</span>
+    </li>
+
+  @endforeach
+  
+  </ul>
+  
+  </div>
+  
+  <div class="card-footer text-center">
+  <a href="{{ route('responsables.index') }}">Ver todos los responsables</a>
+  </div>
+  
+  </div>
+  
+  </div>
+<!-- fin de listado de responsables -->
+
+<!-- Inicio Pie Chart -->
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <!-- AREA CHART -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Total Ingresos Vs Egresos Estimados
+              </h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
               </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <div class="d-md-flex">
-                  <div class="p-1 flex-fill" style="overflow: hidden">
-                    <!-- Map will be created here -->
-                    <div id="world-map-markers" style="height: 325px; overflow: hidden">
-                      <div class="map"></div>
-                    </div>
-                  </div>
-                  <div class="card-pane-right bg-success pt-2 pb-2 pl-4 pr-4">
-                    <div class="description-block mb-4">
-                      <div class="sparkbar pad" data-color="#fff">90,70,90,70,75,80,70</div>
-                      <h5 class="description-header">8390</h5>
-                      <span class="description-text">Visitas</span>
-                    </div>
-                    <!-- /.description-block -->
-                    <div class="description-block mb-4">
-                      <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
-                      <h5 class="description-header">30%</h5>
-                      <span class="description-text">Referrals</span>
-                    </div>
-                    <!-- /.description-block -->
-                    <div class="description-block">
-                      <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
-                      <h5 class="description-header">70%</h5>
-                      <span class="description-text">Organic</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div><!-- /.card-pane-right -->
-                </div><!-- /.d-md-flex -->
+            </div>
+            <div class="card-body">
+            <!-- Cadena para guardar los valores en el html que luego leera el script -->
+            <input type="hidden" id="ingresos_egresos" value="<?PHP echo "" . $ingreso_estimado . "," . $egreso_estimado; ?>">
+           
+            <!-- Inicio Otro Pie Ingresos Vs Egresos -->
+            <div class="chart">
+              <canvas id="myChartPie" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+            </div>
+            <!-- Fin de Otro Pie  Ingresos vs Egresos --> 
+              
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+          <!-- DONUT CHART -->
+          <div class="card card-danger">
+            <div class="card-header">
+              <h3 class="card-title">Ingresos por Corporaciones</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
               </div>
-              <!-- /.card-body -->
             </div>
-          
+            <div class="card-body">
+           
+
+            <!-- Cadena para guardar los valores en el html que luego leera el script -->
+            <input type="hidden" id="etiquetas_corporaciones" value="<?PHP echo "" . $cad_corporaciones; ?>">
+           
+            <input type="hidden" id="ingresos_corporaciones" value="<?PHP echo "" . $cad_ingresos_corporaciones; ?>">
+           
+            <!-- Inicio Otro Pie Ingresos Vs Egresos -->
+            <div class="chart">
+              <canvas id="myChartIngresoCorporacion" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
             </div>
+            <!-- Fin de Otro Pie  Ingresos vs Egresos --> 
+            
+
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+          <!-- PIE CHART -->
+          <div class="card card-danger">
+            <div class="card-header">
+              <h3 class="card-title">Pie Chart</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+        </div>
+        <!-- /.col (LEFT) -->
+        <div class="col-md-6">
+          <!-- LINE CHART -->
+          <div class="card card-info ">
+            <div class="card-header">
+              <h3 class="card-title">Ingresos vs Egresos Anuales</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+                <!-- Cadena para guardar los valores en el html que luego leera el script -->
+            <input type="hidden" id="ingresos_anual" value="<?PHP echo "" . $cad_ingreso_anual; ?>">
+            <input type="hidden" id="egresos_anual" value="<?PHP echo "" . $cad_egreso_anual; ?>">
+            <!-- Inicio Otro Pie Ingresos Vs Egresos -->
+            <div class="chart">
+              <canvas id="myChartLine" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+            </div>
+            <!-- Fin de Otro Pie  Ingresos vs Egresos --> 
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+          <!-- BAR CHART -->
+          <div class="card card-success">
+            <div class="card-header">
+              <h3 class="card-title">Egresos por corporaciones</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart">
+                <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+          <!-- STACKED BAR CHART -->
+          <div class="card card-success">
+            <div class="card-header">
+              <h3 class="card-title">Stacked Bar Chart</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart">
+                <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+        </div>
+        <!-- /.col (RIGHT) -->
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+
+
+ 
+
+
+</div>
+
     
 
-    </section>
+
+
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -340,7 +698,85 @@
 
 <script src="{{-- asset('dist/js/demo.js') --}}"></script>
 
-<script src="{{ asset('dist/js/pages/dashboard2.js')}}"></script>
+<script src="{{-- asset('dist/js/pages/dashboard2.js') --}}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<!-- Script para ingresos y egresos tipo PIE -->
+<script>
+  const ctx = document.getElementById('myChartPie');
+
+  //Cadena con los valores obtenidos del html
+  var ingresos_egresos = document.getElementById("ingresos_egresos").value;
+      var arrayingresos_egresos =  ingresos_egresos.split(",");
+
+  new Chart(ctx, {
+    type: 'pie',
+  data: {
+  labels: ['Ingresos', 'Egresos'],
+  datasets: [
+    {
+      label: 'Total Bs',
+      data: arrayingresos_egresos,
+     // backgroundColor: Object.values(Utils.CHART_COLORS),
+    }
+  ]
+},
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Ingresos Vs Egresos'
+      }
+    }
+  }
+  });
+</script>
+
+<!-- Fin de escrip para ingresos y egresos un PIE -->
+
+<!-- Inicio de Grafica Lineal -->
+<script>
+  const ctx_line = document.getElementById('myChartLine');
+
+  var ingresos = document.getElementById("ingresos_anual").value;
+      var arrayingresos =  ingresos.split(",");
+
+      var egresos = document.getElementById("egresos_anual").value;
+      var arrayegresos =  egresos.split(",");
+
+  new Chart(ctx_line, {
+    type: 'bar',
+    data: {
+      labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+      datasets: [{
+        label: 'Ingresos Bs',
+        data: arrayingresos,
+        borderWidth: 1
+      },
+      {
+        label: 'Egresos Bs',
+        data: arrayegresos,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+<!-- Fin de Grafica Inicial -->
+
+
 
 <script>
   $(function () {
@@ -630,5 +1066,40 @@
       + Math.round(series.percent) + '%</div>'
   }
 </script>
+
+<!-- Ingresos corporaciones pie -->
+<script>
+  const ctx_corp = document.getElementById('myChartIngresoCorporacion');
+
+  //Cadena con los valores obtenidos del html
+  var ingresos_cad = document.getElementById("ingresos_corporaciones").value;
+      var arrayingresos_cad =  ingresos_cad.split(",");
+      var etiquetas_corpo = document.getElementById("etiquetas_corporaciones").value;
+      var array_etiquetas =  etiquetas_corpo.split(",");
+
+  new Chart(ctx_corp, {
+    type: 'pie',
+  data: {
+  labels: array_etiquetas,
+  datasets: [
+    {
+      label: 'Total Bs',
+      data:  arrayingresos_cad, // [12,25,14,3],
+     // backgroundColor: Object.values(Utils.CHART_COLORS),
+    }
+  ]
+},
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      
+    }
+  }
+  });
+</script>
+<!-- Fin Pie Ingresos Corporaciones -->
 
 @stop

@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'FENIX ',
+    'title' => 'Projects',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -131,7 +131,7 @@ return [
 
     'usermenu_enabled' => true,
     'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-primary',
+    'usermenu_header_class' => 'bg-dark',
     'usermenu_image' => false,
     'usermenu_desc' => false,
     'usermenu_profile_url' => false,
@@ -167,12 +167,12 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
+    'classes_auth_card' => 'card-outline card-dark',
     'classes_auth_header' => '',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    'classes_auth_btn' => 'btn-flat btn-dark',
 
     /*
     |--------------------------------------------------------------------------
@@ -192,9 +192,9 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-light-primary elevation-4',
+    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-blue navbar-light',
+    'classes_topnav' => 'navbar-dark navbar-dark',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -215,7 +215,7 @@ return [
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
     'sidebar_collapse_remember_no_transition' => true,
-    'sidebar_scrollbar_theme' => 'os-theme-light',
+    'sidebar_scrollbar_theme' => 'os-theme-black',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
     'sidebar_nav_animation_speed' => 300,
@@ -237,7 +237,7 @@ return [
     'right_sidebar_theme' => 'dark',
     'right_sidebar_slide' => true,
     'right_sidebar_push' => true,
-    'right_sidebar_scrollbar_theme' => 'os-theme-light',
+    'right_sidebar_scrollbar_theme' => 'os-theme-black',
     'right_sidebar_scrollbar_auto_hide' => 'l',
 
     /*
@@ -313,11 +313,16 @@ return [
     
         ],
     
+        [
+            'text' => 'Inicio',
+            'route'  => 'home',
+            'icon' => 'fas fa-house-damage',
+        ],
 
         [
-            'text' => 'Estadisticas',
+            'text' => 'Datos Estadisticos',
             'route'  => 'home',
-            'icon' => 'fas fa-chart-pie',
+            'icon' => 'fas fa-chart-line',
         ],
 
         [
@@ -333,42 +338,52 @@ return [
         ],
 
         [
-            'text' => 'Corporaciones y Entes',
-            'route'  => 'corporaciones.index',
-            'icon' => 'fas fa-fw fa-sitemap',
-        ],
-
-
-        [
-            'text' => 'Gabinete',
-            'route'  => 'gabinetes.index',
-            'icon' => 'fas fa-fw fa-layer-group',
-
+            'text' => 'Administrar Sistema',
+            'icon' => 'fas fa-share-alt',
             
+            'url'  => '#',
+          
+            'submenu' => [
+                [
+                    'text' => 'Corporaciones y Entes',
+                    'route'  => 'corporaciones.index',
+                    'icon' => 'fas fa-fw fa-sitemap',
+                ],
+        
+        
+                [
+                    'text' => 'Gabinete',
+                    'route'  => 'gabinetes.index',
+                    'icon' => 'fas fa-fw fa-layer-group',
+        
+                    
+                ],
+                        
+                                
+              
+        
+                [
+                    'text' => 'Responsable',
+                    'route'  => 'responsables.index',
+                    'icon' => 'fas fa-address-card',
+                ],
+
+    
+            ],
         ],
-
-  
-       
-     
+           
 
 
 
-        [
-            'text' => 'Unidades de Medida',
-            'route'  => 'unidadmedidas.index',
-            'icon' => 'fas fa-fw fa-people-carry',
-         
-        ],
 
-        [
-            'text' => 'Responsable',
-            'route'  => 'responsables.index',
-            'icon' => 'fas fa-fw fa-user',
-        ],
+        
+
+
+    
         [
             'text' => 'Opciones De Direcciones',
-            'icon' => 'fas fa-fw fa-map-marked',
-            'icon_color' => 'primary',
+            'icon' => 'fas fa-route',
+    
             'url'  => '#',
           
             'submenu' => [
@@ -417,10 +432,9 @@ return [
 
     //Seguridad
     [
-        'text' => 'Seguridad',
-        'icon' => 'fa fa-lock',
-        'icon_color' => 'lightblue',
-        'url'  => '#',
+        'text' => 'Configuraciones',
+        'icon' => '	fas fa-cogs',
+         'url'  => '#',
       
         'submenu' => [
             [
@@ -431,10 +445,42 @@ return [
             
             ],
         
+            [
+                'text' => 'Unidades de Medida',
+                'route'  => 'unidadmedidas.index',
+                'icon' => 'fas fa-fw fa-people-carry',
+             
+            ],
+
+
+
 
 
         ],
     ],
+    [
+        'text' => 'Reportes ',
+        'icon' => '	far fa-file-alt',
+         'url'  => '#',
+      
+        'submenu' => [
+            [
+                'text' => 'Usuarios',
+                'icon' => 'fas fa-fw fa-user-tie', //<i class="fas fa-user-tie"></i>
+                'icon_color' => 'lightblue',
+                'route'  => 'users.index',
+            
+            ],
+        
+        
+
+
+
+
+
+        ],
+    ],
+       
        
 
      

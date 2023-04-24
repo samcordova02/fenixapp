@@ -80,9 +80,11 @@ class ActividadeController extends Controller
     {
         request()->validate(Actividade::$rules);
 
+        $file = $request->file('imagen')->store('public/imagenes/actividades/');
+        $url = Storage::url($file);
         $actividade = Actividade::create($request->all());
-
-        
+        $actividade->imagen = $url;
+        $actividade->save();
 
         return redirect()->route('actividades.index')
             ->with('success', 'registrar');
@@ -128,7 +130,15 @@ class ActividadeController extends Controller
     {
         request()->validate(Actividade::$rules);
 
+        $file = $request->file('imagen')->store('public/imagenes/actividades/');
+        $url = Storage::url($file);
+
         $actividade->update($request->all());
+
+        $actividade->imagen = $url;
+        $actividade->save();
+
+        
 
         return redirect()->route('actividades.index')
             ->with('success', 'editar');
