@@ -113,8 +113,19 @@ class HomeController extends Controller
         //Ingresos que cada corporacion ha tenido
         $cad_ingresos_corporaciones = $this->get_ingresos_corporaciones();
 
+        //Cadena egresos corporaciones
+        $cad_egresos_corporaciones = $this->get_cad_egreso_anual();
 
-        return view('home', compact('cad_ingresos_corporaciones', 'cad_corporaciones','cad_egreso_anual', 'cad_ingreso_anual', 'corporaciones', 'responsables', 'obj_carbon', 'fecha_reciente', 'actividades2','total_proyectos' , 'ingreso_estimado', 'egreso_estimado', 'ingreso_actual_estimado', 'egreso_actual_estimado', 'proyectos2'));
+        //Obtener ultimas 9 actividades realizadas
+        $ult_actividades = Actividade::where('id','>', 0)->orderBy('id', 'DESC')->paginate(9);
+
+        //Obtener el monto de los proyectos ingreso
+         $proyecto_ingresos = $this->get_proyecto_ingreso_corporacion();
+        //Obtener el monto de los proyectos egresos
+        $proyecto_egresos = $this->get_proyecto_egreso_corporacion();
+
+
+        return view('home', compact('proyecto_ingresos','proyecto_egresos','ult_actividades','cad_egresos_corporaciones', 'cad_ingresos_corporaciones', 'cad_corporaciones','cad_egreso_anual', 'cad_ingreso_anual', 'corporaciones', 'responsables', 'obj_carbon', 'fecha_reciente', 'actividades2','total_proyectos' , 'ingreso_estimado', 'egreso_estimado', 'ingreso_actual_estimado', 'egreso_actual_estimado', 'proyectos2'));
     }
 
     private function get_cad_ingreso_anual(){
@@ -454,6 +465,50 @@ class HomeController extends Controller
                 $rs_act_ingresos = $actividades->sum('costo');
                 $cad_rs .= $rs_act_ingresos . ",";
             }
+
+        }
+
+        $cad_rs = substr($cad_rs, 0, (strlen($cad_rs) - 1));
+
+       // $cad_rs = '15,25,23,14';
+        return $cad_rs;
+    }
+
+    private function get_proyecto_ingreso_corporacion(){
+        $cad_rs = '';
+
+        $corporaciones = Corporacione::all();
+        $fecha = Carbon::now();
+       $year = $fecha->year;
+
+        foreach($corporaciones as $corporacion)
+        {  //Obtener todos los proyectos que pertenecen a esta corporacion
+            $proyectos = Proyecto::where('corporacion_id', $corporacion->id)->where('tipo', 'INGRESO')->whereYear('created_at', $year)->get();
+
+            $rs_proy_ingresos = $proyectos->sum('costo');
+            $cad_rs .= $rs_proy_ingresos . ",";
+
+        }
+
+        $cad_rs = substr($cad_rs, 0, (strlen($cad_rs) - 1));
+
+       // $cad_rs = '15,25,23,14';
+        return $cad_rs;
+    }
+
+    private function get_proyecto_egreso_corporacion(){
+        $cad_rs = '';
+
+        $corporaciones = Corporacione::all();
+        $fecha = Carbon::now();
+        $year = $fecha->year;
+
+        foreach($corporaciones as $corporacion)
+        {  //Obtener todos los proyectos que pertenecen a esta corporacion
+            $proyectos = Proyecto::where('corporacion_id', $corporacion->id)->where('tipo', 'EGRESO')->whereYear('created_at', $year)->get();
+
+            $rs_proy_ingresos = $proyectos->sum('costo');
+            $cad_rs .= $rs_proy_ingresos . ",";
 
         }
 

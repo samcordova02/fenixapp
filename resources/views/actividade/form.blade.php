@@ -6,14 +6,14 @@
 
        <div class="col-md-12">
         <div class="form-group">
-            {{ Form::label('Nombre De la Actividad') }}
+            {{ Form::label('nombre') }}
             {{ Form::text('nombre', $actividade->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
             {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
 
     <div class="col-md-12">
-        {{ Form::label('Descripcion De la Actividad a Realizar') }}
+        {{ Form::label('descripcion ') }}
         <textarea class="ckeditor form-control" name="descripcion">{{ $actividade->descripcion }}</textarea>
         {!! $errors->first('descripcion', '<div class="invalid-feedback">:message</div>') !!}
        
@@ -22,7 +22,7 @@
     <div class="col-md-4">
         <div class="form-group">
             {{ Form::label('costo') }}
-            {{ Form::text('costo', $actividade->costo, ['class' => 'form-control' . ($errors->has('costo') ? ' is-invalid' : ''), 'placeholder' => 'Costo $']) }}
+            {{ Form::text('costo', $actividade->costo, ['class' => 'form-control' . ($errors->has('costo') ? ' is-invalid' : ''), 'placeholder' => 'Costo']) }}
             {!! $errors->first('costo', '<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
@@ -48,7 +48,7 @@
         <div class="col-md-4">
         <div class="form-group">
             {{ Form::label('proyectos') }}
-            {{ Form::select('proyecto_id', $proyectos, $actividade->proyecto_id, ['class' => 'form-control' . ($errors->has('proyecto_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione el Proyecto']) }}
+            {{ Form::select('proyecto_id', $proyectos, $actividade->proyecto_id, ['class' => 'form-control' . ($errors->has('proyecto_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione uno']) }}
             {!! $errors->first('proyecto_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
@@ -56,7 +56,7 @@
         <div class="col-md-4">
         <div class="form-group">
             {{ Form::label('responsables') }}
-            {{ Form::select('responsable_id', $responsables, $actividade->responsable_id, ['class' => 'form-control' . ($errors->has('responsable_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione el Responsable']) }}
+            {{ Form::select('responsable_id', $responsables, $actividade->responsable_id, ['class' => 'form-control' . ($errors->has('responsable_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione uno']) }}
             {!! $errors->first('responsable_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
@@ -64,7 +64,7 @@
         <div class="col-md-4">
         <div class="form-group">
             {{ Form::label('direcciones') }}
-            {{ Form::select('direcion_id', $direcciones, $actividade->direcion_id, ['class' => 'form-control' . ($errors->has('direcion_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione la Direccion']) }}
+            {{ Form::select('direcion_id', $direcciones, $actividade->direcion_id, ['class' => 'form-control' . ($errors->has('direcion_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccione uno']) }}
             {!! $errors->first('direcion_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
@@ -89,6 +89,6 @@
 
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-outline-primary submit-prevent-button"> <i class="fas fa-upload"></i>{{ __('         Registrar ') }}</button>
+        <button type="submit" class="btn btn-outline-primary submit-prevent-button">{{ __('Enviar') }}</button>
     </div>
 </div>

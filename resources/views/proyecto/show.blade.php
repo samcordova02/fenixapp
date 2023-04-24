@@ -2,9 +2,7 @@
 
 @section('title', 'Detalles del Proyecto')
 
-@section('content_header')
-    <h1>Proyectos</h1>
-@stop
+
 
 @section('content')
     <section class="content container-fluid">
@@ -13,12 +11,12 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Detalles') }}</span>
+                            <span class="card-title">{{ __('Detalles Del Proyecto') }}</span>
                         </div>
                         &nbsp;&nbsp;
                         &nbsp;&nbsp;
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('proyectos.index') }}"> {{ __('Regresar') }}</a>
+                            <a class="btn btn-primary" href="{{ route('proyectos.index') }}"> <i class="fas fa-reply-all"></i>{{ __('Regresar') }}</a>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ url('#') }}"> {{ __('Imprimir') }}</a>
@@ -31,7 +29,7 @@
 
                         <div class="col-md-12">
                         <div class="form-group">
-                            <strong>Nombre:</strong>
+                            <strong>Nombre Del Proyecto:</strong>
                             {!! $proyecto->nombre !!}
                         </div>
                     </div>
@@ -52,7 +50,7 @@
 
                         <div class="col-md-4">
                         <div class="form-group">
-                            <strong>Fecha Inicio:</strong>
+                            <strong>Fecha De Inicio:</strong>
                             {{ $proyecto->fecha_inicio }}
                         </div>
                     </div>

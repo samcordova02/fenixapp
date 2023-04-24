@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $fecha_inicio
  * @property $fecha_fin
  * @property $status
+ * @property $tipo
  * @property $cantidad
  * @property $unidad_id
  * @property $responsable_id
@@ -34,6 +35,7 @@ class Proyecto extends Model
 		'nombre' => 'required',
 		'duracion' => 'required',
 		'status' => 'required',
+        'tipo' => 'required',
 		'unidad_id' => 'required',
 		'responsable_id' => 'required',
 		'corporacion_id' => 'required',
@@ -46,7 +48,7 @@ class Proyecto extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','duracion','costo','fecha_inicio','fecha_fin','status','cantidad','unidad_id','responsable_id','corporacion_id'];
+    protected $fillable = ['nombre','duracion','costo','fecha_inicio','fecha_fin','status','tipo','cantidad','unidad_id','responsable_id','corporacion_id'];
 
 
     /**

@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Responsable</span>
+                            <span class="card-title">{{ __('Detalles De Responsables ') }} Responsable</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('responsables.index') }}"> {{ __('Back') }}</a>

@@ -1,7 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar Actividades')
+@section('title', 'Actividades')
 
+@section('content_header')
+    <h1>Actividades</h1>
+@stop
 
 @section('content')
     <section class="content container-fluid">
@@ -12,7 +15,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Actualizacion de Actividades') }} Actividades</span>
+                        <span class="card-title">{{ __('Update') }} Actividades</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('actividades.update', $actividade->id) }}"  role="form" enctype="multipart/form-data" class="submit-prevent-form">

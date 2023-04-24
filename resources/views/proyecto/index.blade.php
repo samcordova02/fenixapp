@@ -35,7 +35,7 @@
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('proyectos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('proyectos.create') }}" class="btn btn-outline-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear Nuevo Proyecto') }}
                                 </a>
                               </div>
@@ -83,16 +83,18 @@
                             </form>
 
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table table-striped table-hover table-condensed table-bordered small">
+                                {{-- <table class="table table-striped table-hover"> --}}
                                 <thead class="thead">
                                     <tr>
-                                        <th>Id</th>
+                                        <th>N°</th>
                                         
 										<th>Nombre</th>
 										<th>Duracion</th>
 										<th>Costo</th>
 										
 										<th>Estado</th>
+                                        <th>Tipo</th>
 										<th>Cantidad</th>
 										
 										<th>Corporacion</th>
@@ -105,22 +107,23 @@
                                         <tr>
                                             <td>{{ $proyecto->id }}</td>
                                             
-											<td>{!! 'Responsable: ' . $proyecto->responsable->nombre . ' Proyecto: ' .$proyecto->nombre !!}</td>
+											<td style="width: 40%">{!! 'Responsable: ' . $proyecto->responsable->nombre . ' Proyecto: ' .$proyecto->nombre !!}</td>
 											<td>{{ $proyecto->duracion .' Inicio: ' . $proyecto->fecha_inicio . ' Fin: ' . $proyecto->fecha_fin }}</td>
 											<td>{{ number_format($proyecto->costo, 2,',','.') }}</td>
 											
 											<td>{{ $proyecto->status }}</td>
+                                            <td>{{ $proyecto->tipo }}</td>
 											<td>{{ $proyecto->cantidad . ' ' . $proyecto->unidadmedida->nombre }}</td>
 											
 											<td>{{ $proyecto->corporacione->nombre }}</td>
 
                                             <td>
-                                                <form action="{{ route('proyectos.destroy',$proyecto->id) }}" method="POST" class="submit-prevent-form">
-                                                    <a class="btn btn-sm btn-primary btn-block" href="{{ route('proyectos.show',$proyecto->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Detalles') }}</a>
+                                                      <form action="{{ route('proyectos.destroy',$proyecto->id) }}" method="POST" class="submit-prevent-form">
+                                               <a class="btn btn-sm btn-primary btn-block" href="{{ route('proyectos.show',$proyecto->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Detalles') }}</a>
                                                     <a class="btn btn-sm btn-success btn-block" href="{{ route('proyectos.edit',$proyecto->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm submit-prevent-button btn-block show-alert-delete-box"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                  <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

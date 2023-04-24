@@ -61,146 +61,74 @@
         </div>
         <!-- /.row -->
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Reporte Mensual </h5>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
-                      <i class="fas fa-wrench"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" role="menu">
-                      <a href="#" class="dropdown-item">Action</a>
-                      <a href="#" class="dropdown-item">Another action</a>
-                      <a href="#" class="dropdown-item">Something else here</a>
-                      <a class="dropdown-divider"></a>
-                      <a href="#" class="dropdown-item">Separated link</a>
-                    </div>
-                  </div>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-8">
-                    <p class="text-center">
-                      <strong> Proyectos Mar, 2023 - 30 Jul, 2023</strong>
-                    </p>
-
-                    <div class="chart">
-                      <!-- Sales Chart Canvas -->
-                      <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
-                    </div>
-                    <!-- /.chart-responsive -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-md-4">
-                    <p class="text-center">
-                      <strong>Goal Completion</strong>
-                    </p>
-
-                    <div class="progress-group">
-                      Add Products to Cart
-                      <span class="float-right"><b>160</b>/200</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 80%"></div>
-                      </div>
-                    </div>
-                    <!-- /.progress-group -->
-
-                    <div class="progress-group">
-                      Complete Purchase
-                      <span class="float-right"><b>310</b>/400</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-danger" style="width: 75%"></div>
-                      </div>
-                    </div>
-
-                    <!-- /.progress-group -->
-                    <div class="progress-group">
-                      <span class="progress-text">Visit Premium Page</span>
-                      <span class="float-right"><b>480</b>/800</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-success" style="width: 60%"></div>
-                      </div>
-                    </div>
-
-                    <!-- /.progress-group -->
-                    <div class="progress-group">
-                      Send Inquiries
-                      <span class="float-right"><b>250</b>/500</span>
-                      <div class="progress progress-sm">
-                        <div class="progress-bar bg-warning" style="width: 50%"></div>
-                      </div>
-                    </div>
-                    <!-- /.progress-group -->
-                  </div>
-                  <!-- /.col -->
-                </div>
-                <!-- /.row -->
-              </div>
-              <!-- ./card-body -->
-              <div class="card-footer">
-                <div class="row">
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
-                      <h5 class="description-header"> {{ number_format($ingreso_estimado, 2,',','.') }} Bs</h5>
-                      <span class="description-text">TOTAL INGRESOS ESTIMADOS</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
-                      <h5 class="description-header">{{ number_format($ingreso_actual_estimado, 2,',','.') }} Bs</h5>
-                      <span class="description-text">TOTAL INGRESOS</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block border-right">
-                      <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
-                      <h5 class="description-header">{{ number_format($egreso_estimado, 2,',','.') }} Bs</h5>
-                      <span class="description-text">TOTAL EGRESOS ESTIMADOS</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-3 col-6">
-                    <div class="description-block">
-                      <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
-                      <h5 class="description-header">{{ number_format($egreso_actual_estimado, 2,',','.') }} Bs</h5>
-                      <span class="description-text">TOTAL EGRESOS</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-                </div>
-                <!-- /.row -->
-              </div>
-              <!-- /.card-footer -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
+       
         <!-- /.row -->
          <!-- Left col -->
          
         </section>
 
-        
+        <!-- Inicio cuadros de ingresos y egresos estimados y actuales obtenidos -->
+
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3></h3>
+
+                <h4>{{ number_format($ingreso_estimado, 2,',','.') }} Bs</h4>
+                <p>INGRESO ESTIMADO ANUAL</p>
+              </div>
+           
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3></h3>
+
+                <h4>{{ number_format($ingreso_actual_estimado, 2,',','.') }} Bs</h4>
+                <p>TOTAL INGRESO GENERADO</p>
+              </div>
+              
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3></h3>
+
+                <h4>{{ number_format($egreso_estimado, 2,',','.') }} Bs</h4>
+
+                <p>EGRESO ESTIMADO ANUAL</p>
+              </div>
+
+              </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3></h3>
+
+                <h4>{{ number_format($egreso_actual_estimado, 2,',','.') }} Bs</h4>
+
+                <p>TOTAL EGRESO GENERADO</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+
+        <!-- Fin de cuadros de ingresos y egresos -->
 
 
 <!-- Listado top de diez proyectos -->
@@ -241,10 +169,29 @@
     <tr>
       <td><a href="{{ route('proyectos.show',$proyecto->id) }}">{{ $proyecto->id }}</a></td>
       <td>{!! $proyecto->nombre !!}</td>
-      <td><span class="badge badge-success">{{ $proyecto->status }}
+      <td>
+        
+        
+        @if (($obj_carbon->parse($proyecto->fecha_fin)->diffInDays($fecha_reciente))== 0)
+        <span class="badge badge-danger">{{ $proyecto->status }} </span>
+        @endif
+        @if (($obj_carbon->parse($proyecto->fecha_fin)->diffInDays($fecha_reciente)) > 0 && ($obj_carbon->parse($proyecto->fecha_fin)->diffInDays($fecha_reciente)) < 15)
+        <span class="badge badge-warning">{{ $proyecto->status }} </span>
+        @endif
+        @if (($obj_carbon->parse($proyecto->fecha_fin)->diffInDays($fecha_reciente)) >= 15 && ($obj_carbon->parse($proyecto->fecha_fin)->diffInDays($fecha_reciente)) < 30)
+        <span class="badge badge-info">{{ $proyecto->status }} </span>
+        @endif
+        @if (($obj_carbon->parse($proyecto->fecha_fin)->diffInDays($fecha_reciente)) >= 30 && ($obj_carbon->parse($proyecto->fecha_fin)->diffInDays($fecha_reciente)) < 60)
+        <span class="badge badge-primary">{{ $proyecto->status }} </span>
+        @endif
+        @if (($obj_carbon->parse($proyecto->fecha_fin)->diffInDays($fecha_reciente)) >= 60)
+        <span class="badge badge-success">{{ $proyecto->status }} </span>
+        @endif
+        
       
-        </span>
-      
+
+
+
         {{ $obj_carbon->parse($proyecto->fecha_fin)->diffInDays($fecha_reciente) }} Dias Restantes
       
       </td>
@@ -282,7 +229,7 @@
 
   <div class="card">
     <div class="card-header">
-    <h3 class="card-title">Actividades Agregadas Recientemente</h3>
+    <h3 class="card-title">Actividades de mayor costo</h3>
     <div class="card-tools">
     <button type="button" class="btn btn-tool" data-card-widget="collapse">
     <i class="fas fa-minus"></i>
@@ -343,7 +290,7 @@
 
   <div class="card">
   <div class="card-header">
-  <h3 class="card-title">Listado de Corporaciones y entes</h3>
+  <h3 class="card-title">Listado de Corporaciones y Entes</h3>
   <div class="card-tools">
   
   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -436,7 +383,7 @@
           <!-- AREA CHART -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Total Ingresos Vs Egresos Estimados
+              <h3 class="card-title">Total Ingresos vs Egresos Estimados Anualmente
               </h3>
 
               <div class="card-tools">
@@ -466,7 +413,7 @@
           <!-- DONUT CHART -->
           <div class="card card-danger">
             <div class="card-header">
-              <h3 class="card-title">Ingresos por Corporaciones</h3>
+              <h3 class="card-title">Ingreso generado por actividad</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -500,7 +447,7 @@
           <!-- PIE CHART -->
           <div class="card card-danger">
             <div class="card-header">
-              <h3 class="card-title">Pie Chart</h3>
+              <h3 class="card-title">Estimado de Ingresos y Egresos por Corporaciones</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -512,7 +459,19 @@
               </div>
             </div>
             <div class="card-body">
-              <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+
+
+              <!-- Inicio Ingreso y Egreso x Corporacion -->
+
+              <input type="hidden" id="ingresos_corporacion" value="<?PHP echo "" . $proyecto_ingresos; ?>">
+              <input type="hidden" id="egresos_corporacion" value="<?PHP echo "" . $proyecto_egresos; ?>">
+              <!-- Inicio Otro Pie Ingresos Vs Egresos -->
+              <div class="chart">
+                <canvas id="myChartCorporacion" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+
+              <!-- Fin de Ingreso y Egreso Corporacion -->
+            
             </div>
             <!-- /.card-body -->
           </div>
@@ -524,7 +483,7 @@
           <!-- LINE CHART -->
           <div class="card card-info ">
             <div class="card-header">
-              <h3 class="card-title">Ingresos vs Egresos Anuales</h3>
+              <h3 class="card-title">Ingresos vs Egresos generado por actividad</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -552,7 +511,7 @@
           <!-- BAR CHART -->
           <div class="card card-success">
             <div class="card-header">
-              <h3 class="card-title">Egresos por corporaciones</h3>
+              <h3 class="card-title">Egreso generado por actividad</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -564,9 +523,16 @@
               </div>
             </div>
             <div class="card-body">
-              <div class="chart">
-                <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
+              
+             <!-- <input type="hidden" id="etiquetas_corporaciones" value="<?PHP // echo "" . $cad_corporaciones; ?>"> -->
+           
+            <input type="hidden" id="egresos_corporaciones" value="<?PHP echo "" . $cad_egresos_corporaciones; ?>">
+           
+            
+            <div class="chart">
+              <canvas id="myChartEgresoCorporacion" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+            </div>
+              
             </div>
             <!-- /.card-body -->
           </div>
@@ -587,9 +553,19 @@
               </div>
             </div>
             <div class="card-body">
-              <div class="chart">
-                <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
+              
+    <!-- Cadena para guardar los valores en el html que luego leera el script -->
+    <input type="hidden" id="ingresos_anual" value="<?PHP echo "" . $cad_ingreso_anual; ?>">
+    <input type="hidden" id="egresos_anual" value="<?PHP echo "" . $cad_egreso_anual; ?>">
+    <!-- Inicio Otro Pie Ingresos Vs Egresos -->
+    <div class="chart">
+      <canvas id="myResumenAnual
+      
+      
+      " style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+    </div>
+
+
             </div>
             <!-- /.card-body -->
           </div>
@@ -603,7 +579,43 @@
   </section>
   <!-- /.content -->
 
+  <!-- Inicio Contenido Galeria de Actividades -->
+  <section class="content">
 
+    <h5 class="mb-2">Ultimas Actividades Realizadas</h5>
+        <div class="card card-success">
+          <div class="card-body">
+            <div class="row">
+              
+              @foreach ($ult_actividades as $activ)
+
+              <div class="col-md-12 col-lg-6 col-xl-4">
+                <div class="card mb-2">
+                  <img class="card-img-top" src="{{ asset ($activ->imagen) }}" alt="Imagen de la actividad">
+                  <div class="card-img-overlay">
+                    <h5 class="card-title text-primary">{{ $activ->nombre }}</h5>
+                    <p class="card-text pb-1 pt-1 text-white">
+
+                      {!! $activ->descripcion !!}
+                      
+                    </p>
+                    <a href="{{ route('actividades.show',$activ->id) }} class="text-primary">Ver mas</a>
+                  </div>
+                </div>
+              </div>
+                
+              @endforeach
+              
+              
+
+
+            </div>
+          </div>
+        </div>
+
+  </section>
+
+  <!-- Fin Contenido Galeria Actividades -->
  
 
 
@@ -659,9 +671,9 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
     <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{ asset( 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
 
-
+  
 
 
 @stop
@@ -751,7 +763,7 @@
       var arrayegresos =  egresos.split(",");
 
   new Chart(ctx_line, {
-    type: 'bar',
+    type: 'line',
     data: {
       labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
       datasets: [{
@@ -1072,7 +1084,7 @@
   const ctx_corp = document.getElementById('myChartIngresoCorporacion');
 
   //Cadena con los valores obtenidos del html
-  var ingresos_cad = document.getElementById("ingresos_corporaciones").value;
+      var ingresos_cad = document.getElementById("ingresos_corporaciones").value;
       var arrayingresos_cad =  ingresos_cad.split(",");
       var etiquetas_corpo = document.getElementById("etiquetas_corporaciones").value;
       var array_etiquetas =  etiquetas_corpo.split(",");
@@ -1101,5 +1113,80 @@
   });
 </script>
 <!-- Fin Pie Ingresos Corporaciones -->
+
+
+<!-- Egreso por corporaciones -->
+<script>
+  const ctx_corp_egre = document.getElementById('myChartEgresoCorporacion');
+
+  //Cadena con los valores obtenidos del html
+  var egresos_cad = document.getElementById("egresos_corporaciones").value;
+      var arrayegresos_cad =  egresos_cad.split(",");
+      var etiquetas_corpo = document.getElementById("etiquetas_corporaciones").value;
+      var array_etiquetas =  etiquetas_corpo.split(",");
+
+  new Chart(ctx_corp_egre, {
+    type: 'pie',
+  data: {
+  labels: array_etiquetas,
+  datasets: [
+    {
+      label: 'Total Bs',
+      data:  arrayegresos_cad, // [12,25,14,3],
+     // backgroundColor: Object.values(Utils.CHART_COLORS),
+    }
+  ]
+},
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      
+    }
+  }
+  });
+</script>
+<!-- Fin de egreso por corporaciones  -->
+
+<!-- Ingreso vs Egresos anuales por proyecto corporaciones -->
+<script>
+  const ctx_corporacion = document.getElementById('myChartCorporacion');
+
+      var ingres = document.getElementById("ingresos_corporacion").value;
+      var arrayingre =  ingres.split(",");
+
+      var egres = document.getElementById("egresos_corporacion").value;
+      var arrayegre =  egres.split(",");
+
+      var etiquetas_corpo = document.getElementById("etiquetas_corporaciones").value;
+      var array_etiquetas =  etiquetas_corpo.split(",");
+
+  new Chart(ctx_corporacion, {
+    type: 'bar',
+    data: {
+      labels: array_etiquetas,
+      datasets: [{
+        label: 'Ingresos Bs',
+        data: arrayingre,
+        borderWidth: 1
+      },
+      {
+        label: 'Egresos Bs',
+        data: arrayegre,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+<!-- Fin de Ingreso vs egresos anuales por proyecto corporaciones -->
 
 @stop
