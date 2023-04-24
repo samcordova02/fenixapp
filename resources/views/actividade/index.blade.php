@@ -72,7 +72,8 @@
                                     <tr>
                                         <th>N°</th>
                                         
-										<th>Nombre</th>
+										<th>Nombre De La Actividad</th>
+                                        <th>Fecha</th>
 										<th>Costo</th>
 										<th>Status</th>
 										<th>Cantidad</th>
@@ -91,6 +92,7 @@
                                             <td>{{ $actividade->id }}</td>
                                             
 											<td>{{ $actividade->nombre }}</td>
+                                            <td>{{ $actividade->created_at}}</td>
 											<td>{{ $actividade->costo }}</td>
 											<td>{{ $actividade->status }}</td>
 											<td>{{ $actividade->cantidad }}</td>

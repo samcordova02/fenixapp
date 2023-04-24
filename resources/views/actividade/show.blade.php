@@ -23,48 +23,55 @@
                     <div class="card-body">
                         <div class="row">
 
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <strong>Nombre De La Actividad:</strong>
                             {{ $actividade->nombre }}
                         </div>
                     </div>
-
-                        <div class="col-md-12">
+                       <div class="col-md-6">
                         <div class="form-group">
-                            <strong>Descripcion De La Actividad:</strong>
-                            {!! $actividade->descripcion !!}
-                        </div>
-                    </div>
-                                            <div class="col-md-12">
-                        <div class="form-group">
-                            <strong>Imagen De La Actividad:</strong>
-                            <img src="{{ asset ($actividade->imagen) }}" class="rounded mx-auto d-block" style="max-height: 500px; max-width: 500px" alt="">
-                            
-                        </div>
-
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <strong>Proyecto :</strong>
+                            <strong>Proyecto a cual pertenece  :</strong>
                             {!! $actividade->proyecto->nombre !!}
                         </div>
                     </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>Descripcion De La Actividad:</strong>
+                            {!! $actividade->descripcion !!}
+                        </div>
+                          </div>
+                       <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>Fecha De La Actividad:</strong>
+                            {{ $actividade->created_at }}
+                        </div>
+                    </div>
+                        <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>Direccion:</strong>
+                            {{ $actividade->direccione->descripcion }}
+                        </div>
+                         </div>
+
+                        
+
+                        <div class="col-md-6">
                         <div class="form-group">
                             <strong>Costo:</strong>
                             {{ $actividade->costo }}
                         </div>
                     </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                         <div class="form-group">
                             <strong>Status:</strong>
                             {{ $actividade->status }}
                         </div>
                     </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                         <div class="form-group">
                             <strong>Cantidad:</strong>
                             {{ $actividade->cantidad }}
@@ -72,22 +79,27 @@
                     </div>
 
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                         <div class="form-group">
                             <strong>Responsable:</strong>
                             {{ $actividade->responsable->nombre }}
                         </div>
                     </div>
 
-                        <div class="col-md-4">
+                    
+                     <div class="col-md-12">
                         <div class="form-group">
-                            <strong>Direcion:</strong>
-                            {{ $actividade->direccione->descripcion }}
+                            <strong>Imagen De La Actividad:</strong>
+                            <img src="{{ asset ($actividade->imagen) }}" class="rounded mx-auto d-block" style="max-height: 400px; max-width: 400px" alt="">
+                            
                         </div>
-                    </div>
+                        
 
-                    </div>
 
+
+         
+ </div>
+                     </div>
                     </div>
                 </div>
             </div>
