@@ -541,7 +541,7 @@
           <!-- STACKED BAR CHART -->
           <div class="card card-success">
             <div class="card-header">
-              <h3 class="card-title">Stacked Bar Chart</h3>
+              <h3 class="card-title">Historico Proyectos</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -553,17 +553,16 @@
               </div>
             </div>
             <div class="card-body">
-              
-    <!-- Cadena para guardar los valores en el html que luego leera el script -->
-    <input type="hidden" id="ingresos_anual" value="<?PHP echo "" . $cad_ingreso_anual; ?>">
-    <input type="hidden" id="egresos_anual" value="<?PHP echo "" . $cad_egreso_anual; ?>">
-    <!-- Inicio Otro Pie Ingresos Vs Egresos -->
-    <div class="chart">
-      <canvas id="myResumenAnual
-      
-      
-      " style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-    </div>
+             <!-- Ingreso Proyectos Anual -->
+                 <!-- Cadena para guardar los valores en el html que luego leera el script -->
+            <input type="hidden" id="costos_ingresos" value="<?PHP echo "" . $datos_costos['ingresos']; ?>">
+            <input type="hidden" id="costos_egresos" value="<?PHP echo "" . $datos_costos['egresos']; ?>">
+            <input type="hidden" id="etiquetas_years" value="<?PHP echo "" . $cad_year_transcurridos; ?>">
+            
+            <!-- Inicio Otro Pie Ingresos Vs Egresos -->
+            <div class="chart">
+              <canvas id="myHistoricoProyectos" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+            </div>
 
 
             </div>
@@ -1188,5 +1187,46 @@
   });
 </script>
 <!-- Fin de Ingreso vs egresos anuales por proyecto corporaciones -->
+ 
+
+<!-- Proyectos estimados anuales un total de doce -->
+<!-- Inicio de Grafica Lineal -->
+<script>
+  const ctx_proyecto_anual = document.getElementById('myHistoricoProyectos');
+
+  var ingresos = document.getElementById("costos_ingresos").value;
+      var arrayingresos =  ingresos.split(",");
+
+      var egresos = document.getElementById("costos_egresos").value;
+      var arrayegresos =  egresos.split(",");
+
+      var years_etq = document.getElementById("etiquetas_years").value;
+      var array_years_etq =  years_etq.split(",");
+
+  new Chart(ctx_proyecto_anual, {
+    type: 'line',
+    data: {
+      labels: array_years_etq,
+      datasets: [{
+        label: 'Ingresos Bs',
+        data: arrayingresos,
+        borderWidth: 1
+      },
+      {
+        label: 'Egresos Bs',
+        data: arrayegresos,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+<!-- Fin de Grafica Inicial -->
 
 @stop

@@ -119,7 +119,7 @@
 
                                             <td>
                                                       <form action="{{ route('proyectos.destroy',$proyecto->id) }}" method="POST" class="submit-prevent-form">
-                                               <a class="btn btn-sm btn-primary btn-block" href="{{ route('proyectos.show',$proyecto->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Detalles') }}</a>
+                                               <a class="btn btn-sm btn-primary btn-block" href="{{ route('proyectos.show',$proyecto->id) }}"><i class="fas fa-print"></i> {{ __('Detalles') }}</a>
                                                     <a class="btn btn-sm btn-success btn-block" href="{{ route('proyectos.edit',$proyecto->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')

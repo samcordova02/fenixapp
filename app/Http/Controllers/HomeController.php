@@ -42,14 +42,14 @@ class HomeController extends Controller
         //obtener la fecha
         $fecha = Carbon::now();
         $year = $fecha->year;
-        $proyectos = Proyecto::whereYear('created_at', $year)->orderBy('costo', 'DESC')->get();
+        $proyectos = Proyecto::whereYear('fecha_fin', $year)->orderBy('costo', 'DESC')->get();
         //Proyectos 2
-        $proyectos2 = Proyecto::whereYear('created_at', $year)->orderBy('costo', 'DESC')->paginate(10);
+        $proyectos2 = Proyecto::whereYear('fecha_fin', $year)->orderBy('costo', 'DESC')->paginate(10);
         //Obtener el total de proyectos
         $total_proyectos = count($proyectos);
 
         //Obtener la suma del estimado de ingresos en el year
-        $proyectos_ingresos = Proyecto::where('tipo','INGRESO')->whereYear('created_at', $year)->get();
+        $proyectos_ingresos = Proyecto::where('tipo','INGRESO')->whereYear('fecha_fin', $year)->get();
         $ingreso_estimado = $proyectos_ingresos->sum('costo');
         
         
@@ -61,7 +61,7 @@ class HomeController extends Controller
             $fecha = Carbon::now();
             $year = $fecha->year;
          $q->where('tipo', 'like', '%'. $tipo . '%')
-         ->whereYear('created_at', $year);
+         ->whereYear('fecha_fin', $year);
          })->get();
 
          $ingreso_actual_estimado = $actividades_ingresos->sum('costo');
@@ -75,14 +75,14 @@ class HomeController extends Controller
             $fecha = Carbon::now();
             $year = $fecha->year;
          $q->where('tipo', 'like', '%'. $tipo . '%')
-         ->whereYear('created_at', $year);
+         ->whereYear('fecha_fin', $year);
          })->get();
 
          $egreso_actual_estimado = $actividades_egresos->sum('costo');
 
 
         //Obtener la suma del estimado de egresos en el year
-        $proyectos_egresos = Proyecto::where('tipo','EGRESO')->whereYear('created_at', $year)->get();
+        $proyectos_egresos = Proyecto::where('tipo','EGRESO')->whereYear('fecha_fin', $year)->get();
         $egreso_estimado = $proyectos_egresos->sum('costo');
 
         //Actividades realizadas en el year
@@ -100,7 +100,7 @@ class HomeController extends Controller
         ->WhereHas('proyecto', function($q){
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->whereYear('created_at', $year);
+         $q->whereYear('fecha_fin', $year);
          })->paginate(10);
 
          $obj_carbon = new Carbon();
@@ -124,8 +124,14 @@ class HomeController extends Controller
         //Obtener el monto de los proyectos egresos
         $proyecto_egresos = $this->get_proyecto_egreso_corporacion();
 
+        //Obtener cadena de a;os que han transcurrido
+        $cad_year_transcurridos = $this->get_cad_year();
 
-        return view('home', compact('proyecto_ingresos','proyecto_egresos','ult_actividades','cad_egresos_corporaciones', 'cad_ingresos_corporaciones', 'cad_corporaciones','cad_egreso_anual', 'cad_ingreso_anual', 'corporaciones', 'responsables', 'obj_carbon', 'fecha_reciente', 'actividades2','total_proyectos' , 'ingreso_estimado', 'egreso_estimado', 'ingreso_actual_estimado', 'egreso_actual_estimado', 'proyectos2'));
+        //Obtener historico de year y sus costos de ingresos y egresos
+        $datos_costos = $this->get_costo_por_year();
+
+
+        return view('home', compact('datos_costos', 'cad_year_transcurridos','proyecto_ingresos','proyecto_egresos','ult_actividades','cad_egresos_corporaciones', 'cad_ingresos_corporaciones', 'cad_corporaciones','cad_egreso_anual', 'cad_ingreso_anual', 'corporaciones', 'responsables', 'obj_carbon', 'fecha_reciente', 'actividades2','total_proyectos' , 'ingreso_estimado', 'egreso_estimado', 'ingreso_actual_estimado', 'egreso_actual_estimado', 'proyectos2'));
     }
 
     private function get_cad_ingreso_anual(){
@@ -137,7 +143,7 @@ class HomeController extends Controller
             $tipo = "INGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year)
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year)
          ;
          })->get();
         $egreso_estimado = $proyectos_ingresos->sum('costo');
@@ -150,7 +156,7 @@ class HomeController extends Controller
             $tipo = "INGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -162,7 +168,7 @@ class HomeController extends Controller
             $tipo = "INGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get(); 
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -174,7 +180,7 @@ class HomeController extends Controller
             $tipo = "INGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get(); 
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -185,7 +191,7 @@ class HomeController extends Controller
             $tipo = "INGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year)
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year)
          ;
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
@@ -198,7 +204,7 @@ class HomeController extends Controller
             $tipo = "INGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -210,7 +216,7 @@ class HomeController extends Controller
             $tipo = "INGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -222,7 +228,7 @@ class HomeController extends Controller
             $tipo = "INGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -234,7 +240,7 @@ class HomeController extends Controller
             $tipo = "INGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -246,7 +252,7 @@ class HomeController extends Controller
             $tipo = "INGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -258,7 +264,7 @@ class HomeController extends Controller
             $tipo = "INGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -270,7 +276,7 @@ class HomeController extends Controller
             $tipo = "INGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
          $cad_rs .= $egreso_estimado;
@@ -290,7 +296,7 @@ class HomeController extends Controller
             $tipo = "EGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
         $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", "; 
@@ -302,7 +308,7 @@ class HomeController extends Controller
             $tipo = "EGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -314,7 +320,7 @@ class HomeController extends Controller
             $tipo = "EGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get(); 
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -326,7 +332,7 @@ class HomeController extends Controller
             $tipo = "EGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get(); 
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -338,7 +344,7 @@ class HomeController extends Controller
             $tipo = "EGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -350,7 +356,7 @@ class HomeController extends Controller
             $tipo = "EGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -362,7 +368,7 @@ class HomeController extends Controller
             $tipo = "EGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -374,7 +380,7 @@ class HomeController extends Controller
             $tipo = "EGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -386,7 +392,7 @@ class HomeController extends Controller
             $tipo = "EGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -398,7 +404,7 @@ class HomeController extends Controller
             $tipo = "EGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -410,7 +416,7 @@ class HomeController extends Controller
             $tipo = "EGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
         $cad_rs .= $egreso_estimado . ", ";
@@ -422,7 +428,7 @@ class HomeController extends Controller
             $tipo = "EGRESO";
             $fecha = Carbon::now();
             $year = $fecha->year;
-         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('created_at', $year);
+         $q->where('tipo', 'like', '%'. $tipo . '%')->whereYear('fecha_fin', $year);
          })->get();
          $egreso_estimado = $proyectos_ingresos->sum('costo');
          $cad_rs .= $egreso_estimado;
@@ -457,7 +463,7 @@ class HomeController extends Controller
 
         foreach($corporaciones as $corporacion)
         {  //Obtener todos los proyectos que pertenecen a esta corporacion
-            $proyectos = Proyecto::where('corporacion_id', $corporacion->id)->where('tipo', 'INGRESO')->whereYear('created_at', $year)->get();
+            $proyectos = Proyecto::where('corporacion_id', $corporacion->id)->where('tipo', 'INGRESO')->whereYear('fecha_fin', $year)->get();
 
             //cliclo recorrer los proyectos y tomar las actividades que cada proyecto haya realizado
             foreach($proyectos as $proyecto){
@@ -483,7 +489,7 @@ class HomeController extends Controller
 
         foreach($corporaciones as $corporacion)
         {  //Obtener todos los proyectos que pertenecen a esta corporacion
-            $proyectos = Proyecto::where('corporacion_id', $corporacion->id)->where('tipo', 'INGRESO')->whereYear('created_at', $year)->get();
+            $proyectos = Proyecto::where('corporacion_id', $corporacion->id)->where('tipo', 'INGRESO')->whereYear('fecha_fin', $year)->get();
 
             $rs_proy_ingresos = $proyectos->sum('costo');
             $cad_rs .= $rs_proy_ingresos . ",";
@@ -505,7 +511,7 @@ class HomeController extends Controller
 
         foreach($corporaciones as $corporacion)
         {  //Obtener todos los proyectos que pertenecen a esta corporacion
-            $proyectos = Proyecto::where('corporacion_id', $corporacion->id)->where('tipo', 'EGRESO')->whereYear('created_at', $year)->get();
+            $proyectos = Proyecto::where('corporacion_id', $corporacion->id)->where('tipo', 'EGRESO')->whereYear('fecha_fin', $year)->get();
 
             $rs_proy_ingresos = $proyectos->sum('costo');
             $cad_rs .= $rs_proy_ingresos . ",";
@@ -516,6 +522,68 @@ class HomeController extends Controller
 
        // $cad_rs = '15,25,23,14';
         return $cad_rs;
+    }
+
+    private function get_cad_year(){
+        $cad = '';
+        $year_inicio = 2010;
+        $fecha = Carbon::now();
+        $year_actual = $fecha->year;
+
+        //validar que siempre solo muestro solo doce a;os por comodida de la grafica desde el actual hacia atras (minimo 2021) creacion de app.
+        $constante = 11;
+        $a = $year_actual -  $constante;
+        if($a >= $year_inicio){
+            $year_inicio = $a; 
+        }
+        
+        //Crear una cadena desde el a;o de inicio hasta el a;o actual, y regresarlo
+        for($i = $year_inicio; $i <= $year_actual; $i++)
+        {
+            $cad .= $i . ',';
+        }
+
+        $cad = substr($cad, 0, (strlen($cad) - 1));
+
+        return $cad;
+    }
+
+    private function get_costo_por_year(){
+        $cad_ingreso = '';
+        $cad_egreso = '';
+        $year_inicio = 2010;
+        $fecha = Carbon::now();
+        $year_actual = $fecha->year;
+
+        //validar que siempre solo muestro solo doce a;os por comodida de la grafica desde el actual hacia atras (minimo 2021) creacion de app.
+        $constante = 11;
+        $a = $year_actual -  $constante;
+        if($a >= $year_inicio){
+            $year_inicio = $a; 
+        }
+        
+        //Crear una cadena desde el a;o de inicio hasta el a;o actual, y regresarlo
+        for($i = $year_inicio; $i <= $year_actual; $i++)
+        {
+           //Obtener Los Ingresos por proyectos
+           $rs_ingresos = Proyecto::where('tipo', 'INGRESO')->whereYear('fecha_fin', $i)->get();
+           $cad_ingreso .= $rs_ingresos->sum('costo') . ',';
+           //Obtener Los Egresos por proyectos
+           $rs_egresos = Proyecto::where('tipo', 'EGRESO')->whereYear('fecha_fin', $i)->get();
+           $cad_egreso .= $rs_egresos->sum('costo') . ',';
+
+        }
+
+        $cad_ingreso = substr($cad_ingreso, 0, (strlen($cad_ingreso) - 1));
+        $cad_egreso = substr($cad_egreso, 0, (strlen($cad_egreso) - 1));
+
+        //Retornar array de datos
+        $datos = [
+            'ingresos' => $cad_ingreso,
+            'egresos' => $cad_egreso 
+        ];
+
+        return $datos;
     }
 
 
